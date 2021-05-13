@@ -32,6 +32,13 @@ void matrix_scan_user(void) {
         case 2:
             ergodox_right_led_2_on();
             break;
+        case 4:
+            ergodox_right_led_3_on();
+            break;
+        case 5:
+            ergodox_right_led_2_on();
+            ergodox_right_led_3_on();
+            break;
         default:
             // none
             break;
