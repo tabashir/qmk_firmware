@@ -50,7 +50,7 @@ KC_7   , KC_8, KC_9 , KC_0        , KC_MINS, KC_EQL , KC_BSPC,
 KC_LBRC, KC_Y, KC_U , KC_I        , KC_O   , KC_P   , KC_NUHS,
          KC_H, KC_J , KC_K        , KC_L   , KC_SCLN, KC_QUOT,
 KC_RBRC, KC_N, KC_M , KC_COMM     , KC_DOT , KC_SLSH, KC_RSFT,
-               TG(2), LSFT(KC_INS), KC_RALT, KC_APP , KC_RCTL,
+               KC_ENT, LSFT(KC_INS), KC_RALT, KC_APP , KC_RCTL,
 
 // right thumb
 
@@ -63,8 +63,8 @@ KC_DOWN, KC_DEL , KC_SPC
 // left hand
 
 TO(4)  , KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  , KC_F6  ,
-_______, KC_EXLM, KC_AT  , KC_LCBR, KC_RCBR, KC_PIPE, _______,
-_______, KC_HASH, KC_DLR , KC_LPRN, KC_RPRN, KC_GRV ,
+_______, KC_EXLM, KC_AT  , KC_UP, KC_RCBR, KC_PIPE, _______,
+_______, KC_HASH, KC_LEFT , KC_DOWN, KC_RIGHT, KC_GRV ,
 _______, KC_PERC, KC_CIRC, KC_LBRC, KC_RBRC, KC_TILD, _______,
 EEP_RST, _______, _______, _______, _______,
 
