@@ -42,7 +42,7 @@ KC_LCTL, OSM(MOD_LGUI), KC_LALT, LCTL(KC_INS), TD(TD_LAYER_FN),
 
         KC_HOME, KC_END ,
                  KC_PGUP,
-KC_ENT, KC_SPC , KC_PGDN,
+KC_SPC, KC_ENT , KC_PGDN,
 
 // right hand
 
