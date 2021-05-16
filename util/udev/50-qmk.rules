@@ -60,3 +60,8 @@ SUBSYSTEMS=="usb", ATTRS{idVendor}=="239a", ATTRS{idProduct}=="000e", TAG+="uacc
 SUBSYSTEMS=="usb", ATTRS{idVendor}=="2a03", ATTRS{idProduct}=="0036", TAG+="uaccess", ENV{ID_MM_DEVICE_IGNORE}="1"
 ### Micro
 SUBSYSTEMS=="usb", ATTRS{idVendor}=="2a03", ATTRS{idProduct}=="0037", TAG+="uaccess", ENV{ID_MM_DEVICE_IGNORE}="1"
+
+# KTEC Ergodone
+## This is also a device in system but not needed for reflash
+# SUBSYSTEMS=="usb", ATTRS{idVendor}=="1209", ATTRS{idProduct}=="2328", TAG+="uaccess", ENV{ID_MM_DEVICE_IGNORE}="1"
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="1209", ATTRS{idProduct}=="2327", TAG+="uaccess", ENV{ID_MM_DEVICE_IGNORE}="1"
