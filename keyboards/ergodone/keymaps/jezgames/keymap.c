@@ -4,7 +4,8 @@ enum {
     TD_LAYER_FN,
     TD_INSERT_COPY_PASTE,
     TD_ALTS_TOGGLE,
-    TD_GRAVE_TOGGLE
+    TD_GRAVE_CAPS,
+    TD_GRAVE_TAB
 };
 
 
@@ -36,8 +37,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // left hand
 
 KC_ESC , KC_1         , KC_2   , KC_3        , KC_4           , KC_5, KC_6  ,
-KC_TAB , KC_Q         , KC_W   , KC_E        , KC_R           , KC_T, KC_GRV,
-TD(TD_GRAVE_TOGGLE), KC_A         , KC_S   , KC_D        , KC_F           , KC_G,
+KC_TAB , KC_Q         , KC_W   , KC_E        , KC_R           , KC_T, TD(TD_GRAVE_TAB),
+TD(TD_GRAVE_CAPS), KC_A         , KC_S   , KC_D        , KC_F           , KC_G,
 KC_LSFT, KC_NUBS      , KC_Z   , KC_X        , KC_C           , KC_V, KC_B  ,
 KC_LCTL, OSM(MOD_LGUI), KC_LALT, TD(TD_INSERT_COPY_PASTE), TD(TD_LAYER_FN),
 
@@ -53,7 +54,7 @@ KC_7   , KC_8, KC_9 , KC_0        , KC_MINS, KC_EQL , KC_BSPC,
 KC_LBRC, KC_Y, KC_U , KC_I        , KC_O   , KC_P   , KC_NUHS,
          KC_H, KC_J , KC_K        , KC_L   , KC_SCLN, KC_QUOT,
 KC_RBRC, KC_N, KC_M , KC_COMM     , KC_DOT , KC_SLSH, KC_RSFT,
-               TD(TD_LAYER_FN), KC_DEL, TD_ALTS_TOGGLE, KC_APP , KC_RCTL,
+               TD(TD_LAYER_FN), KC_DEL, KC_LALT, KC_APP , KC_LCTL,
 
 // right thumb
 
@@ -66,9 +67,9 @@ KC_DOWN, KC_ENT , KC_SPC
 // left hand
 
 TO(4)  , KC_F1           , KC_F2         , KC_F3    , KC_F4           , KC_F5  , KC_F6  ,
-_______, KC_EXLM         , KC_HOME       , KC_UP    , KC_END          , KC_PGUP, _______,
-_______, KC_HASH         , KC_LEFT       , KC_DOWN  , KC_RIGHT        , KC_PGDN ,
-_______, LALT(KC_LEFT)   , LCTL(KC_LEFT) , XXXXXXX  , LCTL(KC_RIGHT)  , LALT(KC_RIGHT) ,  _______,
+_______, XXXXXXX         , KC_HOME       , KC_UP    , KC_END          , XXXXXXX , _______,
+_______, LALT(KC_LEFT)   , KC_LEFT       , KC_DOWN  , KC_RIGHT        , LALT(KC_RIGHT) ,
+_______, XXXXXXX         , LCTL(KC_LEFT) , XXXXXXX  , LCTL(KC_RIGHT)  , XXXXXXX ,  _______,
 EEP_RST, _______, _______, _______, _______,
 
 // left thumb
@@ -231,10 +232,10 @@ void matrix_scan_user(void) {
             ergodox_right_led_2_on();
             break;
         case 4:
+            ergodox_right_led_1_on();
             ergodox_right_led_3_on();
             break;
         case 5:
-            ergodox_right_led_2_on();
             ergodox_right_led_3_on();
             break;
         default:
@@ -289,12 +290,23 @@ void dance_layers_finish(qk_tap_dance_state_t *state, void *user_data) {
   }
 }
 
-void caps_grave_tab(qk_tap_dance_state_t *state, void *user_data) {
-    if (state->count == 1) {
-        SEND_STRING(SS_TAP(X_CAPSLOCK));
-    } else {
-        SEND_STRING(SS_TAP(X_GRAVE) SS_TAP(X_TAB));
-    }
+void grave_caps(qk_tap_dance_state_t *state, void *user_data) {
+  switch (state->count) {
+    case 1:
+      SEND_STRING(SS_TAP(X_GRAVE));
+      break;
+    case 2:
+      SEND_STRING(SS_TAP(X_GRAVE));
+      SEND_STRING(SS_TAP(X_GRAVE));
+      break;
+    default:
+      SEND_STRING(SS_TAP(X_CAPSLOCK));
+      break;
+  }
+}
+
+void grave_tab(qk_tap_dance_state_t *state, void *user_data) {
+    SEND_STRING(SS_TAP(X_GRAVE) SS_TAP(X_TAB));
 }
 
 void insert_copy_paste(qk_tap_dance_state_t *state, void *user_data) {
@@ -316,5 +328,6 @@ qk_tap_dance_action_t tap_dance_actions[] = {
   [TD_LAYER_FN] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_layers, dance_layers_finish),
   [TD_INSERT_COPY_PASTE] = ACTION_TAP_DANCE_FN(insert_copy_paste),
   [TD_ALTS_TOGGLE] = ACTION_TAP_DANCE_DOUBLE(KC_LALT, KC_RALT),
-  [TD_GRAVE_TOGGLE] = ACTION_TAP_DANCE_FN(caps_grave_tab)
+  [TD_GRAVE_CAPS] = ACTION_TAP_DANCE_FN(grave_caps),
+  [TD_GRAVE_TAB] = ACTION_TAP_DANCE_FN(grave_tab)
 };
