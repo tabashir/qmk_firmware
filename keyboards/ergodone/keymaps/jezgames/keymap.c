@@ -4,6 +4,7 @@ enum {
     TD_LAYER_FN,
     TD_INSERT_COPY_PASTE,
     TD_ALTS_TOGGLE,
+    TD_NLCK_SLCK_TOGGLE,
     TD_GRAVE_CAPS,
     TD_GRAVE_TAB,
     TD_ESC_ZERO,
@@ -20,6 +21,19 @@ enum {
     TD_0_F10,
     TD_11_F11,
     TD_12_F12,
+    TD_CTL_F1_ALT_F1,
+    TD_CTL_F2_ALT_F2,
+    TD_CTL_F3_ALT_F3,
+    TD_CTL_F4_ALT_F4,
+    TD_CTL_F5_ALT_F5,
+    TD_CTL_F6_ALT_F6,
+    TD_CTL_F7_ALT_F7,
+    TD_CTL_F8_ALT_F8,
+    TD_CTL_F9_ALT_F9,
+    TD_CTL_F10_ALT_F10,
+    TD_CTL_F11_ALT_F11,
+    TD_CTL_F12_ALT_F12,
+    TD_CTL_F13_ALT_F13,
     TD_SH_Q,
     TD_SH_W,
     TD_SH_E,
@@ -255,63 +269,63 @@ XXXXXXX               , XXXXXXX       , XXXXXXX
 [6] = LAYOUT_ergodox(
 // left hand
 
-TD(TD_ESC_ZERO) , TD(TD_1_F1)    , TD(TD_2_F2) , TD(TD_3_F3) , TD(TD_4_F4) , TD(TD_5_F5) , TD(TD_6_F6)      ,
-TD(TD_SH_TAB)   , TD(TD_SH_Q)    , TD(TD_SH_W) , TD(TD_SH_E) , TD(TD_SH_R) , TD(TD_SH_T) , TD(TD_GRAVE_TAB) ,
-KC_NLCK         , TD(TD_SH_A)    , TD(TD_SH_S) , TD(TD_SH_D) , TD(TD_SH_F) , TD(TD_SH_G) ,
-KC_LSFT         , TD(TD_SH_NUBS) , TD(TD_SH_Z) , TD(TD_SH_X) , TD(TD_SH_C) , TD(TD_SH_V) , TD(TD_SH_B)      ,
-KC_LCTL         , KC_KP_DOT      , KC_LALT     , KC_INSERT   , KC_KP_EQUAL ,
+TD(TD_ESC_ZERO)         , TD(TD_1_F1)    , TD(TD_2_F2) , TD(TD_3_F3)    , TD(TD_4_F4)   , TD(TD_5_F5)    , TD(TD_6_F6)       ,
+TD(TD_SH_TAB)           , TD(TD_SH_Q)    , TD(TD_SH_W) , TD(TD_SH_E)    , TD(TD_SH_R)   , TD(TD_SH_T)    , TD(TD_GRAVE_TAB)  ,
+TD(TD_NLCK_SLCK_TOGGLE) , TD(TD_SH_A)    , TD(TD_SH_S) , TD(TD_SH_D)    , TD(TD_SH_F)   , TD(TD_SH_G)    ,
+KC_LSFT                 , TD(TD_SH_NUBS) , TD(TD_SH_Z) , TD(TD_SH_X)    , TD(TD_SH_C)   , TD(TD_SH_V)    , TD(TD_SH_B)       ,
+KC_LCTL                 , KC_KP_DOT      , KC_LALT     , KC_INSERT      , OSL(7)   ,
 
 // left thumb
 
-KC_HOME               , KC_END        ,
-KC_PGUP               ,
-KC_SPC                , KC_ENT        , KC_PGDN       ,
+KC_HOME                 , KC_END         ,
+KC_PGUP                 ,
+KC_SPC                  , KC_ENT         , KC_PGDN     ,
 
 // right hand
 
-TD(TD_7_F7) , TD(TD_8_F8) , TD(TD_9_F9) , TD(TD_0_F10) , TD(TD_11_F11) , TD(TD_12_F12) , KC_BSPC ,
-KC_LBRC     , TD(TD_Y_U)  , TD(TD_SH_U) , KC_I         , TD(TD_O_U)    , TD(TD_P_U)    , TD(TD_HASH_SHIFT) ,
-KC_H        , KC_J        , KC_K        , KC_L         , KC_SCLN       , KC_QUOT       ,
-KC_RBRC     , KC_N        , KC_M        , TD(TD_SH_COMM), TD(TD_SH_DOT) , TD(TD_SH_SLSH), KC_LSFT ,
-MO(7)       , KC_DEL      , KC_LALT     , KC_KP_ENTER  , KC_LCTL       ,
+TD(TD_7_F7)             , TD(TD_8_F8)    , TD(TD_9_F9) , TD(TD_0_F10)   , TD(TD_11_F11) , TD(TD_12_F12)  , KC_BSPC           ,
+KC_LBRC                 , TD(TD_Y_U)     , TD(TD_SH_U) , KC_I           , TD(TD_O_U)    , TD(TD_P_U)     , TD(TD_HASH_SHIFT) ,
+KC_H                    , KC_J           , KC_K        , KC_L           , KC_SCLN       , KC_QUOT        ,
+KC_RBRC                 , KC_N           , KC_M        , TD(TD_SH_COMM) , TD(TD_SH_DOT) , TD(TD_SH_SLSH) , KC_LSFT           ,
+OSL(7)                   , KC_DEL         , KC_LALT     , KC_KP_ENTER    , KC_LCTL       ,
 
 // right thumb
 
-KC_KP_SLASH               , KC_KP_ASTERISK       ,
-KC_KP_MINUS                 ,
-KC_KP_PLUS               , KC_ENT        , KC_SPC
+KC_KP_SLASH             , KC_KP_ASTERISK ,
+KC_KP_MINUS             ,
+KC_KP_PLUS              , KC_ENT         , KC_SPC
 
 ),
 
 [7] = LAYOUT_ergodox(
 // left hand
 
-_______               , KC_F1         , KC_F2         , KC_F3                    , KC_F4           , KC_F5          , KC_F6            ,
-_______               , _______       , _______       , _______                  , _______         , _______        , _______          ,
-_______               , _______       , _______       , _______                  , _______         , _______        ,
-_______               , _______       , _______       , _______                  , _______         , _______        , _______          ,
-_______               , _______       , _______       , _______                  , _______         ,
+_______              , TD(TD_CTL_F1_ALT_F1) , TD(TD_CTL_F2_ALT_F2) , TD(TD_CTL_F3_ALT_F3)   , TD(TD_CTL_F4_ALT_F4)   , TD(TD_CTL_F5_ALT_F5)   , TD(TD_CTL_F6_ALT_F6)   ,
+_______              , _______              , _______              , _______                , _______                , _______                , _______                ,
+_______              , _______              , _______              , _______                , _______                , _______                ,
+_______              , _______              , _______              , _______                , _______                , _______                , _______                ,
+_______              , _______              , _______              , _______                , _______                ,
 
 // left thumb
 
-_______               , _______       ,
-_______               ,
-KC_BTN1               , KC_BTN2       , KC_BTN3       ,
+_______              , _______              ,
+_______              ,
+KC_BTN1              , KC_BTN2              , KC_BTN3              ,
 
 // right hand
 
-KC_F7                 , KC_F8         , KC_F9         , KC_F10                   , KC_F11          , KC_F12         , KC_F13           ,
-_______               , _______       , _______       , KC_MS_U                  , _______         , _______        , _______          ,
-KC_BTN2               , KC_MS_L       , KC_MS_D       , KC_MS_R                  , KC_BTN1         , _______        ,
-_______               , _______       , _______       , _______                  , _______         , _______        , _______          ,
-_______               , _______       , _______       , _______                  , _______         ,
+TD(TD_CTL_F7_ALT_F7) , TD(TD_CTL_F8_ALT_F8) , TD(TD_CTL_F9_ALT_F9) , TD(TD_CTL_F10_ALT_F10) , TD(TD_CTL_F11_ALT_F11) , TD(TD_CTL_F12_ALT_F12) , TD(TD_CTL_F13_ALT_F13) ,
+_______              , _______              , _______              , KC_MS_U                , _______                , _______                , _______                ,
+KC_BTN2              , KC_MS_L              , KC_MS_D              , KC_MS_R                , KC_BTN1                , _______                ,
+_______              , _______              , _______              , _______                , _______                , _______                , _______                ,
+_______              , _______              , _______              , _______                , _______                ,
 
 // right thumb
 
-_______               , _______       ,
-_______               ,
-_______               , _______       , _______
-)                     ,
+_______              , _______              ,
+_______              ,
+KC_BTN3              , KC_BTN2              , KC_BTN1
+)
 
 }; // END OF KEYMAPS
 
@@ -454,6 +468,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
   [TD_LAYER_FN] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_layers, dance_layers_finish),
   [TD_INSERT_COPY_PASTE] = ACTION_TAP_DANCE_FN(insert_copy_paste),
   [TD_ALTS_TOGGLE] = ACTION_TAP_DANCE_DOUBLE(KC_LALT, KC_RALT),
+  [TD_NLCK_SLCK_TOGGLE] = ACTION_TAP_DANCE_DOUBLE(KC_NLCK, KC_SCROLLLOCK),
   [TD_GRAVE_CAPS] = ACTION_TAP_DANCE_FN(grave_caps),
   [TD_GRAVE_TAB] = ACTION_TAP_DANCE_FN(grave_tab),
   [TD_ESC_ZERO] = ACTION_TAP_DANCE_FN(esc_to_zero),
@@ -495,4 +510,17 @@ qk_tap_dance_action_t tap_dance_actions[] = {
   [TD_LBRC_U] = ACTION_TAP_DANCE_DOUBLE(KC_LBRC, LSFT(KC_U)),
   [TD_SH_NUBS] = ACTION_TAP_DANCE_DOUBLE(KC_NUBS, LSFT(KC_NUBS)),
   [TD_SH_TAB] = ACTION_TAP_DANCE_DOUBLE(KC_TAB, LSFT(KC_TAB)),
+  [TD_CTL_F1_ALT_F1] = ACTION_TAP_DANCE_DOUBLE(LCTL(KC_F1), LALT(KC_F1)),
+  [TD_CTL_F2_ALT_F2] = ACTION_TAP_DANCE_DOUBLE(LCTL(KC_F2), LALT(KC_F2)),
+  [TD_CTL_F3_ALT_F3] = ACTION_TAP_DANCE_DOUBLE(LCTL(KC_F3), LALT(KC_F3)),
+  [TD_CTL_F4_ALT_F4] = ACTION_TAP_DANCE_DOUBLE(LCTL(KC_F4), LALT(KC_F4)),
+  [TD_CTL_F5_ALT_F5] = ACTION_TAP_DANCE_DOUBLE(LCTL(KC_F5), LALT(KC_F5)),
+  [TD_CTL_F6_ALT_F6] = ACTION_TAP_DANCE_DOUBLE(LCTL(KC_F6), LALT(KC_F6)),
+  [TD_CTL_F7_ALT_F7] = ACTION_TAP_DANCE_DOUBLE(LCTL(KC_F7), LALT(KC_F7)),
+  [TD_CTL_F8_ALT_F8] = ACTION_TAP_DANCE_DOUBLE(LCTL(KC_F8), LALT(KC_F8)),
+  [TD_CTL_F9_ALT_F9] = ACTION_TAP_DANCE_DOUBLE(LCTL(KC_F9), LALT(KC_F9)),
+  [TD_CTL_F10_ALT_F10] = ACTION_TAP_DANCE_DOUBLE(LCTL(KC_F10), LALT(KC_F10)),
+  [TD_CTL_F11_ALT_F11] = ACTION_TAP_DANCE_DOUBLE(LCTL(KC_F11), LALT(KC_F11)),
+  [TD_CTL_F12_ALT_F12] = ACTION_TAP_DANCE_DOUBLE(LCTL(KC_F12), LALT(KC_F12)),
+  [TD_CTL_F13_ALT_F13] = ACTION_TAP_DANCE_DOUBLE(LCTL(KC_F13), LALT(KC_F13))
 };
