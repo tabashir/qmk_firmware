@@ -1,4 +1,23 @@
 #include QMK_KEYBOARD_H
+#define __DELAY_BACKWARD_COMPATIBLE__
+#include <util/delay.h>
+
+#define _BASE_LAYER 0
+#define _BASE_LAYER_FN 1
+#define _BASE_LAYER_MOUSE 2
+#define _GAMES_SELECT_LAYER 3
+#define _DDO_LAYER 4
+#define _DDO_LAYER_FN 5
+#define _LOTRO_LAYER 6
+#define _LOTRO_LAYER_FN 7
+#define _EQ_LAYER 8
+#define _EQ_LAYER_FN 9 
+#define TAPPING_TERM 200
+
+#define BLINK_FAST 50
+#define BLINK_MED 100 
+#define BLINK_SLOW 200
+
 
 enum {
     TD_LAYER_FN,
@@ -125,37 +144,38 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      *                                `--------------------'  `--------------------'
      */
 
-[0] = LAYOUT_ergodox(
+[_BASE_LAYER] = LAYOUT_ergodox(
 // left hand
 
-KC_ESC            , TD(TDT_1_F1)   , TD(TDT_2_F2) , TD(TDT_3_F3)              , TD(TDT_4_F4)     , TD(TDT_5_F5) , TD(TDT_6_F6)      ,
-KC_TAB            , KC_Q          , KC_W        , KC_E                     , KC_R            , KC_T        , TD(TD_GRAVE_TAB) ,
-TD(TD_GRAVE_CAPS) , KC_A          , KC_S        , KC_D                     , KC_F            , KC_G        ,
-KC_LSFT           , KC_NUBS       , KC_Z        , KC_X                     , KC_C            , KC_V        , KC_B             ,
-KC_LCTL           , OSM(MOD_LGUI) , KC_LALT     , TD(TD_INSERT_COPY_PASTE) , TD(TD_LAYER_FN) ,
+KC_ESC            , TD(TDT_1_F1)             , TD(TDT_2_F2) , TD(TDT_3_F3)             , TD(TDT_4_F4)    , TD(TDT_5_F5)   , TD(TDT_6_F6)     ,
+KC_TAB            , KC_Q                     , KC_W         , KC_E                     , KC_R            , KC_T           , TD(TD_GRAVE_TAB) ,
+TD(TD_GRAVE_CAPS) , KC_A                     , KC_S         , KC_D                     , KC_F            , KC_G           ,
+KC_LSFT           , KC_NUBS                  , KC_Z         , KC_X                     , KC_C            , KC_V           , KC_B             ,
+KC_LCTL           , OSM(MOD_LGUI)            , KC_LALT      , KC_SPACE                 , TD(TD_LAYER_FN) ,
 
 // left thumb
 
-KC_HOME               , KC_END        ,
-KC_PGUP               ,
-KC_SPC                , KC_ENT        , KC_PGDN       ,
+KC_PSCR           , KC_SCROLLLOCK            ,
+KC_PGUP           ,
+KC_ENT            , TD(TD_INSERT_COPY_PASTE) , KC_PGDN      ,
 
 // right hand
 
-TD(TDT_7_F7)     , TD(TDT_8_F8) , TD(TDT_9_F9) , TD(TDT_0_F10) , TD(TDT_11_F11) , TD(TDT_12_F12) , KC_BSPC ,
-KC_LBRC         , KC_Y        , KC_U        , KC_I         , KC_O          , KC_P          , KC_NUHS ,
-KC_H            , KC_J        , KC_K        , KC_L         , KC_SCLN       , KC_QUOT       ,
-KC_RBRC         , KC_N        , KC_M        , KC_COMM      , KC_DOT        , KC_SLSH       , KC_RSFT ,
-TD(TD_LAYER_FN) , KC_DEL      , KC_LALT     , KC_APP       , KC_LCTL       ,
+TD(TDT_7_F7)      , TD(TDT_8_F8)             , TD(TDT_9_F9) , TD(TDT_0_F10)            , TD(TDT_11_F11)  , TD(TDT_12_F12) , KC_BSPC          ,
+KC_HOME           , KC_Y                     , KC_U         , KC_I                     , KC_O            , KC_P           , KC_NUHS          ,
+KC_H              , KC_J                     , KC_K         , KC_L                     , KC_SCLN         , KC_QUOT        ,
+KC_END            , KC_N                     , KC_M         , KC_COMM                  , KC_DOT          , KC_SLSH        , KC_RSFT          ,
+TD(TD_LAYER_FN)   , KC_LBRC                  , KC_RBRC      , TD(TD_ALTS_TOGGLE)       , KC_LCTL         ,
 
 // right thumb
 
-KC_LEFT               , KC_RGHT       ,
-KC_UP                 ,
-KC_DOWN               , KC_ENT        , KC_SPC
-)                     ,
+KC_LEFT           , KC_RGHT                  ,
+KC_UP             ,
+KC_DOWN           , KC_DEL                   , KC_SPC
 
-[1] = LAYOUT_ergodox(
+)                               ,
+
+[_BASE_LAYER_FN] = LAYOUT_ergodox(
 // left hand
 
 _______               , KC_F1         , KC_F2         , KC_F3                    , KC_F4           , KC_F5          , KC_F6            ,
@@ -185,7 +205,7 @@ _______               ,
 _______               , _______       , _______
 )                     ,
 
-[2] = LAYOUT_ergodox(
+[_BASE_LAYER_MOUSE] = LAYOUT_ergodox(
 // left hand
 
 _______               , _______       , _______       , _______                  , _______         , _______        , _______          ,
@@ -215,14 +235,14 @@ _______               ,
 _______               , _______       , _______
 )                     ,
 
-[3] = LAYOUT_ergodox(
+[_GAMES_SELECT_LAYER] = LAYOUT_ergodox(
 // left hand
 
-TO(0)                 , TO(4)         , TO(6)         , XXXXXXX                  , XXXXXXX         , XXXXXXX        , XXXXXXX          ,
-XXXXXXX               , XXXXXXX       , XXXXXXX       , XXXXXXX                  , XXXXXXX         , XXXXXXX        , XXXXXXX          ,
-XXXXXXX               , XXXXXXX       , XXXXXXX       , XXXXXXX                  , XXXXXXX         , XXXXXXX        ,
-XXXXXXX               , XXXXXXX       , XXXXXXX       , XXXXXXX                  , XXXXXXX         , XXXXXXX        , XXXXXXX          ,
-XXXXXXX               , XXXXXXX       , XXXXXXX       , XXXXXXX                  , _______         ,
+TO(_BASE_LAYER) , TO(_DDO_LAYER) , TO(_LOTRO_LAYER) , TO(_EQ_LAYER) , XXXXXXX , XXXXXXX , XXXXXXX ,
+XXXXXXX         , XXXXXXX        , XXXXXXX          , XXXXXXX            , XXXXXXX , XXXXXXX , XXXXXXX ,
+XXXXXXX         , XXXXXXX        , XXXXXXX          , XXXXXXX            , XXXXXXX , XXXXXXX ,
+XXXXXXX         , XXXXXXX        , XXXXXXX          , XXXXXXX            , XXXXXXX , XXXXXXX , XXXXXXX ,
+XXXXXXX         , XXXXXXX        , XXXXXXX          , XXXXXXX            , _______ ,
 
 // left thumb
 
@@ -245,7 +265,7 @@ XXXXXXX               ,
 XXXXXXX               , XXXXXXX       , XXXXXXX
 )                     ,
 
-[4] = LAYOUT_ergodox(
+[_DDO_LAYER] = LAYOUT_ergodox(
 // left hand
 
 TD(TD_ESC_ZERO)       , KC_1          , KC_2          , KC_3                     , KC_4            , KC_5           , KC_6             ,
@@ -271,62 +291,63 @@ KC_SPC                , KC_P0         , KC_PDOT       , KC_L                    
 // right thumb
 
 KC_BTN1               , KC_BTN2       ,
-TO(5)                 ,
-OSL(5)                , KC_SPC        , KC_RGHT
+KC_BTN3               ,
+TG(_DDO_LAYER_FN)    , KC_SPC        , KC_RGHT
 )                     ,
 
-[5] = LAYOUT_ergodox(
+[_DDO_LAYER_FN] = LAYOUT_ergodox(
+// _DDO_LAYER_FN
 // left hand
 
-TO(0)                 , XXXXXXX       , XXXXXXX       , XXXXXXX                  , XXXXXXX         , XXXXXXX        , XXXXXXX          ,
-XXXXXXX               , XXXXXXX       , XXXXXXX       , XXXXXXX                  , XXXXXXX         , XXXXXXX        , XXXXXXX          ,
-XXXXXXX               , XXXXXXX       , XXXXXXX       , XXXXXXX                  , XXXXXXX         , XXXXXXX        ,
-XXXXXXX               , XXXXXXX       , XXXXXXX       , XXXXXXX                  , XXXXXXX         , XXXXXXX        , XXXXXXX          ,
-TO(0)                 , XXXXXXX       , XXXXXXX       , XXXXXXX                  , XXXXXXX         ,
+TO(_BASE_LAYER) , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX ,
+XXXXXXX         , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX ,
+XXXXXXX         , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX ,
+XXXXXXX         , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX ,
+TO(_BASE_LAYER) , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX ,
 
 // left thumb
 
-XXXXXXX               , XXXXXXX       ,
-XXXXXXX               ,
-XXXXXXX               , XXXXXXX       , XXXXXXX       ,
+XXXXXXX         , XXXXXXX ,
+XXXXXXX         ,
+XXXXXXX         , XXXXXXX , XXXXXXX ,
 
 // right hand
 
-XXXXXXX               , XXXXXXX       , XXXXXXX       , XXXXXXX                  , XXXXXXX         , XXXXXXX        , XXXXXXX          ,
-XXXXXXX               , XXXXXXX       , XXXXXXX       , XXXXXXX                  , XXXXXXX         , XXXXXXX        , XXXXXXX          ,
-XXXXXXX               , XXXXXXX       , XXXXXXX       , XXXXXXX                  , XXXXXXX         , XXXXXXX        ,
-XXXXXXX               , XXXXXXX       , XXXXXXX       , XXXXXXX                  , XXXXXXX         , XXXXXXX        , XXXXXXX          ,
-XXXXXXX               , XXXXXXX       , XXXXXXX       , XXXXXXX                  , XXXXXXX         ,
+XXXXXXX         , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX ,
+XXXXXXX         , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX ,
+XXXXXXX         , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX ,
+XXXXXXX         , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX ,
+XXXXXXX         , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX ,
 
 // right thumb
 
-XXXXXXX               , XXXXXXX       ,
-XXXXXXX               ,
-XXXXXXX               , XXXXXXX       , XXXXXXX
-)                     ,
+XXXXXXX         , XXXXXXX ,
+XXXXXXX         ,
+XXXXXXX         , XXXXXXX , XXXXXXX
+)               ,
 
-[6] = LAYOUT_ergodox(
+[_LOTRO_LAYER] = LAYOUT_ergodox(
 // left hand
 
-TD(TD_ESC_ZERO)         , TD(TD_1_SH_1)    , TD(TD_2_SH_2) , TD(TD_3_SH_3)    , TD(TD_4_SH_4)   , TD(TD_5_SH_5)    , TD(TD_6_SH_6)       ,
-TD(TD_SH_TAB)           , TD(TD_SH_Q)    , TD(TD_SH_W) , TD(TD_SH_E)    , TD(TD_SH_R)   , TD(TD_SH_T)    , TD(TD_GRAVE_TAB)  ,
-TD(TD_NLCK_SLCK_TOGGLE) , TD(TD_SH_A)    , TD(TD_SH_S) , TD(TD_SH_D)    , TD(TD_SH_F)   , TD(TD_SH_G)    ,
-KC_LSFT                 , TD(TD_SH_NUBS) , TD(TD_SH_Z) , TD(TD_SH_X)    , TD(TD_SH_C)   , TD(TD_SH_V)    , TD(TD_SH_B)       ,
-KC_LCTL                 , KC_KP_DOT      , KC_LALT     , KC_INSERT      , OSL(7)   ,
+TD(TD_ESC_ZERO)         , TD(TD_1_SH_1)  , TD(TD_2_SH_2) , TD(TD_3_SH_3)  , TD(TD_4_SH_4)         , TD(TD_5_SH_5)     , TD(TD_6_SH_6)     ,
+TD(TD_SH_TAB)           , TD(TD_SH_Q)    , TD(TD_SH_W)   , TD(TD_SH_E)    , TD(TD_SH_R)           , TD(TD_SH_T)       , TD(TD_GRAVE_TAB)  ,
+TD(TD_NLCK_SLCK_TOGGLE) , TD(TD_SH_A)    , TD(TD_SH_S)   , TD(TD_SH_D)    , TD(TD_SH_F)           , TD(TD_SH_G)       ,
+KC_LSFT                 , TD(TD_SH_NUBS) , TD(TD_SH_Z)   , TD(TD_SH_X)    , TD(TD_SH_C)           , TD(TD_SH_V)       , TD(TD_SH_B)       ,
+KC_LCTL                 , KC_KP_DOT      , KC_LALT       , KC_INSERT      , OSL(_LOTRO_LAYER_FN)                ,
 
 // left thumb
 
 KC_HOME                 , KC_END         ,
 KC_PGUP                 ,
-KC_SPC                  , KC_ENT         , KC_PGDN     ,
+KC_SPC                  , KC_ENT         , KC_PGDN       ,
 
 // right hand
 
-TD(TD_7_SH_7)             , TD(TD_8_SH_8)    , TD(TD_9_SH_9) , TD(TD_0_SH_0)   , TD(TD_MINUS_SH_MINUS) , TD(TD_EQL_SH_EQL)  , KC_BSPC           ,
-KC_LBRC                 , TD(TD_Y_U)     , TD(TD_SH_U) , KC_I           , TD(TD_O_U)    , TD(TD_P_U)     , TD(TD_HASH_SHIFT) ,
-KC_H                    , KC_J           , KC_K        , KC_L           , KC_SCLN       , KC_QUOT        ,
-KC_RBRC                 , KC_N           , KC_M        , TD(TD_SH_COMM) , TD(TD_SH_DOT) , TD(TD_SH_SLSH) , KC_LSFT           ,
-OSL(7)                   , KC_DEL         , KC_LALT     , KC_KP_ENTER    , KC_LCTL       ,
+TD(TD_7_SH_7)           , TD(TD_8_SH_8)  , TD(TD_9_SH_9) , TD(TD_0_SH_0)  , TD(TD_MINUS_SH_MINUS) , TD(TD_EQL_SH_EQL) , KC_BSPC           ,
+KC_LBRC                 , TD(TD_Y_U)     , TD(TD_SH_U)   , KC_I           , TD(TD_O_U)            , TD(TD_P_U)        , TD(TD_HASH_SHIFT) ,
+KC_H                    , KC_J           , KC_K          , KC_L           , KC_SCLN               , KC_QUOT           ,
+KC_RBRC                 , KC_N           , KC_M          , TD(TD_SH_COMM) , TD(TD_SH_DOT)         , TD(TD_SH_SLSH)    , KC_LSFT           ,
+OSL(_LOTRO_LAYER_FN)                  , KC_DEL         , KC_LALT       , KC_KP_ENTER    , KC_LCTL               ,
 
 // right thumb
 
@@ -336,7 +357,7 @@ KC_KP_PLUS              , KC_ENT         , KC_SPC
 
 ),
 
-[7] = LAYOUT_ergodox(
+[_LOTRO_LAYER_FN] = LAYOUT_ergodox(
 // left hand
 
 _______              , TD(TD_F1_SH_F1) , TD(TD_F2_SH_F2) , TD(TD_F3_SH_F3)   , TD(TD_F4_SH_F4)   , TD(TD_F5_SH_F5)   , TD(TD_F6_SH_F6)   ,
@@ -364,37 +385,165 @@ _______              , _______              , _______              , _______    
 _______              , _______              ,
 _______              ,
 KC_BTN3              , KC_BTN2              , KC_BTN1
-)
+),
+
+[_EQ_LAYER] = LAYOUT_ergodox(
+// left hand
+
+TD(TD_ESC_ZERO)         , TD(TD_1_SH_1)  , TD(TD_2_SH_2) , TD(TD_3_SH_3)  , TD(TD_4_SH_4)         , TD(TD_5_SH_5)     , TD(TD_6_SH_6)     ,
+TD(TD_SH_TAB)           , TD(TD_SH_Q)    , TD(TD_SH_W)   , TD(TD_SH_E)    , TD(TD_SH_R)           , TD(TD_SH_T)       , TD(TD_GRAVE_TAB)  ,
+TD(TD_NLCK_SLCK_TOGGLE) , TD(TD_SH_A)    , TD(TD_SH_S)   , TD(TD_SH_D)    , TD(TD_SH_F)           , TD(TD_SH_G)       ,
+KC_LSFT                 , TD(TD_SH_NUBS) , TD(TD_SH_Z)   , TD(TD_SH_X)    , TD(TD_SH_C)           , TD(TD_SH_V)       , TD(TD_SH_B)       ,
+KC_LCTL                 , KC_KP_DOT      , KC_LALT       , KC_INSERT     , TO(_EQ_LAYER_FN)                ,
+
+// left thumb
+
+KC_HOME                 , KC_END         ,
+KC_PGUP                 ,
+KC_SPC                  , KC_ENT         , KC_PGDN       ,
+
+// right hand
+
+TD(TD_7_SH_7)           , TD(TD_8_SH_8)  , TD(TD_9_SH_9) , TD(TD_0_SH_0)  , TD(TD_MINUS_SH_MINUS) , TD(TD_EQL_SH_EQL) , KC_BSPC           ,
+KC_LBRC                 , KC_Y           , KC_U         , KC_UP           , TD(TD_O_U)            , TD(TD_P_U)        , TD(TD_HASH_SHIFT) ,
+KC_H                    , KC_LEFT        , KC_DOWN       , KC_RIGHT        , KC_SCLN               , KC_QUOT           ,
+KC_RBRC                 , KC_N           , KC_M          , TD(TD_SH_COMM) , TD(TD_SH_DOT)         , TD(TD_SH_SLSH)    , KC_LSFT           ,
+TO(_EQ_LAYER_FN)        , KC_DEL         , KC_LALT       , KC_KP_ENTER    , KC_LCTL               ,
+
+// right thumb
+
+KC_KP_SLASH             , KC_KP_ASTERISK ,
+KC_KP_MINUS             ,
+KC_KP_PLUS              , KC_ENT         , KC_SPC
+
+),
+
+[_EQ_LAYER_FN] = LAYOUT_ergodox(
+// _EQ_LAYER_FN
+// left hand
+
+TD(TD_ESC_ZERO)   , TD(TDT_1_F1)   , TD(TDT_2_F2) , TD(TDT_3_F3)              , TD(TDT_4_F4)     , TD(TDT_5_F5) , TD(TDT_6_F6)      ,
+KC_TAB            , KC_Q          , KC_W        , KC_E                     , KC_R            , KC_T        , TD(TD_GRAVE_TAB) ,
+TD(TD_GRAVE_CAPS) , KC_A          , KC_S        , KC_D                     , KC_F            , KC_G        ,
+KC_LSFT           , KC_NUBS       , KC_Z        , KC_X                     , KC_C            , KC_V        , KC_B             ,
+KC_LCTL           , OSM(MOD_LGUI) , KC_LALT     , TD(TD_INSERT_COPY_PASTE) , TO(_EQ_LAYER) ,
+
+// left thumb
+
+KC_HOME               , KC_END        ,
+KC_PGUP               ,
+KC_ENT                , TD(TD_INSERT_COPY_PASTE)        , KC_PGDN       ,
+
+// right hand
+
+TD(TDT_7_F7)     , TD(TDT_8_F8) , TD(TDT_9_F9) , TD(TDT_0_F10) , TD(TDT_11_F11) , TD(TDT_12_F12) , KC_BSPC ,
+KC_LBRC         , KC_Y        , KC_U        , KC_I         , KC_O          , KC_P          , KC_NUHS ,
+KC_H            , KC_J        , KC_K        , KC_L         , KC_SCLN       , KC_QUOT       ,
+KC_RBRC         , KC_N        , KC_M        , KC_COMM      , KC_DOT        , KC_SLSH       , KC_RSFT ,
+TO(_EQ_LAYER) , KC_LBRC      , KC_RBRC     , TD(TD_ALTS_TOGGLE) , KC_LCTL       ,
+
+// right thumb
+
+KC_LEFT               , KC_RGHT       ,
+KC_UP                 ,
+KC_DOWN               , KC_DEL        , KC_SPC
+
+)                     ,
 
 }; // END OF KEYMAPS
+
+
+void variable_delay(int duration) {
+  switch(duration) {
+      case BLINK_SLOW:
+        _delay_ms(BLINK_SLOW);
+        break;
+      case BLINK_MED:
+        _delay_ms(BLINK_MED);
+        break;
+      default:
+        _delay_ms(BLINK_FAST);
+        break;
+  }
+};
+
+void single_led(int led) {
+  switch(led) {
+    case 1:
+      ergodox_right_led_1_on();
+      ergodox_right_led_2_off();
+      ergodox_right_led_3_off();
+      break;
+    case 2:
+      ergodox_right_led_1_off();
+      ergodox_right_led_2_on();
+      ergodox_right_led_3_off();
+      break;
+    case 3:
+      ergodox_right_led_1_off();
+      ergodox_right_led_2_off();
+      ergodox_right_led_3_on();
+      break;
+  }
+}
+
+void led_wave(int duration) {
+  single_led(1);
+  variable_delay(duration);
+  single_led(2);
+  variable_delay(duration);
+  single_led(3);
+  variable_delay(duration);
+  ergodox_led_all_off();
+};
+
+#define RGBLIGHT_COLOR_LAYER_0 0x00, 0x00, 0xFF
+#define RGBLIGHT_COLOR_LAYER_1 0xFF, 0x00, 0xFF
+#define RGBLIGHT_COLOR_LAYER_6 0xFF, 0xFF, 0x00
 
 // Runs constantly in the background, in a loop.
 void matrix_scan_user(void) {
 
     uint8_t layer = biton32(layer_state);
-
-    ergodox_board_led_off();
-    ergodox_right_led_1_off();
-    ergodox_right_led_2_off();
-    ergodox_right_led_3_off();
-    ergodox_led_all_set(LED_BRIGHTNESS_HI);
     switch (layer) {
+        case _BASE_LAYER:
+            ergodox_led_all_off();
+            break;
         case 1:
-            ergodox_right_led_1_on();
+            single_led(1);
             break;
         case 2:
-            ergodox_right_led_2_on();
+            single_led(2);
             break;
-        case 3:
+        case _GAMES_SELECT_LAYER:
+            led_wave(BLINK_FAST);
+            break;
+        case _DDO_LAYER:
+            single_led(1);
+            break;
+        case _DDO_LAYER_FN:
             ergodox_right_led_1_on();
             ergodox_right_led_2_on();
             ergodox_right_led_3_on();
             break;
-        case 4:
+        case _LOTRO_LAYER:
+            ergodox_right_led_1_set(LED_BRIGHTNESS_LO);
+            ergodox_right_led_1_on();
+            ergodox_right_led_2_set(LED_BRIGHTNESS_HI);
+            ergodox_right_led_2_on();
+            ergodox_right_led_3_off();
+            break;
+        case _LOTRO_LAYER_FN:
+            ergodox_right_led_1_on();
             ergodox_right_led_2_on();
             ergodox_right_led_3_on();
             break;
-        case 6:
+        case _EQ_LAYER:
+            ergodox_right_led_3_on();
+            break;
+        case _EQ_LAYER_FN:
+            ergodox_right_led_1_on();
+            ergodox_right_led_2_on();
             ergodox_right_led_3_on();
             break;
         default:
@@ -404,21 +553,13 @@ void matrix_scan_user(void) {
 };
 
 
-#define _BASE_LAYER 0
-#define _FUN_LAYER 1
-#define _MOUSE_LAYER 2
-#define _GAMES_SELECT_LAYER 3
-#define _DDO_LAYER 4
-#define _LOTRO_LAYER 6
-#define _LOTRO_LAYER_FN 7
-#define TAPPING_TERM 200
 
 bool fn_held;
 
 void dance_layers(qk_tap_dance_state_t *state, void *user_data) {
   if (state->pressed)
   {
-    layer_on(_FUN_LAYER);
+    layer_on(_BASE_LAYER_FN);
     fn_held = true;
   }
   switch (state->count)
@@ -426,17 +567,17 @@ void dance_layers(qk_tap_dance_state_t *state, void *user_data) {
   case 1: //off all layers, just base on
     if (!state->pressed)
     {
-      layer_move(0);
+      layer_move(_BASE_LAYER);
       fn_held = false;
     }
     break;
   case 2: //function layer on
-    layer_on(_FUN_LAYER);
-    layer_off(_MOUSE_LAYER);
+    layer_on(_BASE_LAYER_FN);
+    layer_off(_BASE_LAYER_MOUSE);
     break;
   case 3: //mouse layer on
-    layer_on(_MOUSE_LAYER);
-    layer_off(_FUN_LAYER);
+    layer_on(_BASE_LAYER_MOUSE);
+    layer_off(_BASE_LAYER_FN);
     break;
   case 4: //games Select layer on
     layer_move(_GAMES_SELECT_LAYER);
@@ -470,13 +611,13 @@ void grave_caps(qk_tap_dance_state_t *state, void *user_data) {
 void esc_to_zero(qk_tap_dance_state_t *state, void *user_data) {
   switch (state->count) {
     case 3:
-      layer_move(0);
+      layer_move(_BASE_LAYER);
       break;
     case 4:
-      layer_move(0);
+      layer_move(_BASE_LAYER);
       break;
     case 5:
-      layer_move(0);
+      layer_move(_BASE_LAYER);
       break;
     default:
       tap_code(KC_ESC);
