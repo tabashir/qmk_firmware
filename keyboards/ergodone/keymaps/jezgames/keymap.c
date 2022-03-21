@@ -222,7 +222,7 @@ _______               , _______       , _______       ,
 
 // right hand
 
-_______               , _______       , _______       , _______                  , _______         , _______        , _______          ,
+_______               , _______       , _______       , _______                  , _______         , _______        , RESET          ,
 _______               , _______       , KC_HOME       , KC_UP                    , KC_END          , _______        , _______          ,
 _______               , KC_LEFT       , KC_DOWN       , KC_RGHT                  , _______         , KC_MPLY        ,
 KC_MUTE               , _______       , KC_WBAK       , KC_MPRV                  , KC_MNXT         , _______        , _______          ,
@@ -400,7 +400,7 @@ KC_LCTL                 , KC_KP_DOT      , KC_LALT       , KC_INSERT     , TO(_E
 
 KC_HOME                 , KC_END         ,
 KC_PGUP                 ,
-KC_SPC                  , KC_ENT         , KC_PGDN       ,
+KC_ENT                  , KC_INS         , KC_PGDN       ,
 
 // right hand
 
@@ -414,7 +414,7 @@ TO(_EQ_LAYER_FN)        , KC_DEL         , KC_LALT       , KC_KP_ENTER    , KC_L
 
 KC_KP_SLASH             , KC_KP_ASTERISK ,
 KC_KP_MINUS             ,
-KC_KP_PLUS              , KC_ENT         , KC_SPC
+KC_KP_PLUS              , KC_DEL         , KC_SPC
 
 ),
 
@@ -467,39 +467,83 @@ void variable_delay(int duration) {
   }
 };
 
-void single_led(int led) {
+void single_led(int led, int brightness) {
   switch(led) {
     case 1:
-      ergodox_right_led_1_on();
-      ergodox_right_led_2_off();
-      ergodox_right_led_3_off();
+      ergodox_right_led_on(led);
+      ergodox_right_led_set(led, brightness);
+      ergodox_right_led_off(2);
+      ergodox_right_led_off(3);
       break;
     case 2:
       ergodox_right_led_1_off();
-      ergodox_right_led_2_on();
+      ergodox_right_led_on(led);
+      ergodox_right_led_set(led, brightness);
       ergodox_right_led_3_off();
       break;
     case 3:
       ergodox_right_led_1_off();
       ergodox_right_led_2_off();
-      ergodox_right_led_3_on();
+      ergodox_right_led_on(led);
+      ergodox_right_led_set(led, brightness);
       break;
   }
 }
 
-void led_wave(int duration) {
-  single_led(1);
-  variable_delay(duration);
-  single_led(2);
-  variable_delay(duration);
-  single_led(3);
-  variable_delay(duration);
-  ergodox_led_all_off();
-};
+void red_led(int led, int brightness) {
+  ergodox_right_led_off(1);
+  ergodox_right_led_off(2);
+  ergodox_right_led_off(3);
+  ergodox_right_led_on(led);
+  ergodox_right_led_set(led, brightness);
+}
 
-#define RGBLIGHT_COLOR_LAYER_0 0x00, 0x00, 0xFF
-#define RGBLIGHT_COLOR_LAYER_1 0xFF, 0x00, 0xFF
-#define RGBLIGHT_COLOR_LAYER_6 0xFF, 0xFF, 0x00
+int led_counter = 0;
+int current_led_number = 1;
+int led_forward = 1;
+
+void led_wave2(int loop_size) {
+  led_counter++;
+  if (led_counter == loop_size) {
+    if (led_forward == 1) {
+      current_led_number++;
+    } else {
+      current_led_number--;
+    }
+    if (current_led_number == 3) {
+      led_forward = 0;
+    }
+    if (current_led_number == 0) {
+      led_forward = 1;
+    }
+    single_led(current_led_number, LED_BRIGHTNESS_LO);
+    led_counter = 0;
+  }
+}
+
+void led_wave(int loop_size) {
+    single_led(1, LED_BRIGHTNESS_LO);
+}
+
+void ergodox_blink_all_leds_custom(void)
+{
+    ergodox_led_all_off();
+    ergodox_led_all_set(LED_BRIGHTNESS_HI);
+    ergodox_right_led_1_on();
+    _delay_ms(50);
+    ergodox_right_led_2_on();
+    _delay_ms(50);
+    ergodox_right_led_3_on();
+    _delay_ms(50);
+    ergodox_right_led_1_off();
+    _delay_ms(50);
+    ergodox_right_led_2_off();
+    _delay_ms(50);
+    ergodox_right_led_3_off();
+    //ergodox_led_all_on();
+    //_delay_ms(333);
+    ergodox_led_all_off();
+}
 
 // Runs constantly in the background, in a loop.
 void matrix_scan_user(void) {
@@ -510,16 +554,16 @@ void matrix_scan_user(void) {
             ergodox_led_all_off();
             break;
         case 1:
-            single_led(1);
+            single_led(1, LED_BRIGHTNESS_HI);
             break;
         case 2:
-            single_led(2);
+            single_led(2, LED_BRIGHTNESS_HI);
             break;
         case _GAMES_SELECT_LAYER:
-            led_wave(BLINK_FAST);
+            led_wave2(20);
             break;
         case _DDO_LAYER:
-            single_led(1);
+            single_led(1, LED_BRIGHTNESS_LO);
             break;
         case _DDO_LAYER_FN:
             ergodox_right_led_1_on();
@@ -527,11 +571,7 @@ void matrix_scan_user(void) {
             ergodox_right_led_3_on();
             break;
         case _LOTRO_LAYER:
-            ergodox_right_led_1_set(LED_BRIGHTNESS_LO);
-            ergodox_right_led_1_on();
-            ergodox_right_led_2_set(LED_BRIGHTNESS_HI);
-            ergodox_right_led_2_on();
-            ergodox_right_led_3_off();
+            red_led(2, LED_BRIGHTNESS_LO);
             break;
         case _LOTRO_LAYER_FN:
             ergodox_right_led_1_on();
@@ -539,12 +579,10 @@ void matrix_scan_user(void) {
             ergodox_right_led_3_on();
             break;
         case _EQ_LAYER:
-            ergodox_right_led_3_on();
+            red_led(3, LED_BRIGHTNESS_LO);
             break;
         case _EQ_LAYER_FN:
-            ergodox_right_led_1_on();
-            ergodox_right_led_2_on();
-            ergodox_right_led_3_on();
+            single_led(1, LED_BRIGHTNESS_LO);
             break;
         default:
             break;
