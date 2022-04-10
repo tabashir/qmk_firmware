@@ -12,6 +12,8 @@
 #define _LOTRO_LAYER_FN 7
 #define _EQ_LAYER 8
 #define _EQ_LAYER_FN 9 
+#define _IMPACT_LAYER 10 
+#define _IMPACT_LAYER_FN 11
 #define TAPPING_TERM 200
 
 #define BLINK_FAST 50
@@ -24,8 +26,8 @@ enum {
     TD_INSERT_COPY_PASTE,
     TD_ALTS_TOGGLE,
     TD_NLCK_SLCK_TOGGLE,
-    TD_GRAVE_CAPS,
-    TD_GRAVE_TAB,
+    TD_GRAVE_TAB_CAPS,
+    TD_GRAVE_DBL,
     TD_ESC_ZERO,
     TD_HASH_SHIFT,
     TD_1_SH_1,
@@ -38,6 +40,12 @@ enum {
     TD_8_SH_8,
     TD_9_SH_9,
     TD_0_SH_0,
+    TD_1_ALT_1,
+    TD_2_ALT_2,
+    TD_3_ALT_3,
+    TD_4_ALT_4,
+    TD_5_ALT_5,
+    TD_6_ALT_6,
     TD_MINUS_SH_MINUS,
     TD_EQL_SH_EQL,
     TDT_1_F1,
@@ -148,8 +156,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // left hand
 
 KC_ESC            , TD(TDT_1_F1)             , TD(TDT_2_F2) , TD(TDT_3_F3)             , TD(TDT_4_F4)    , TD(TDT_5_F5)   , TD(TDT_6_F6)     ,
-KC_TAB            , KC_Q                     , KC_W         , KC_E                     , KC_R            , KC_T           , TD(TD_GRAVE_TAB) ,
-TD(TD_GRAVE_CAPS) , KC_A                     , KC_S         , KC_D                     , KC_F            , KC_G           ,
+KC_TAB            , KC_Q                     , KC_W         , KC_E                     , KC_R            , KC_T           , TD(TD_GRAVE_DBL) ,
+TD(TD_GRAVE_TAB_CAPS) , KC_A                     , KC_S         , KC_D                     , KC_F            , KC_G           ,
 KC_LSFT           , KC_NUBS                  , KC_Z         , KC_X                     , KC_C            , KC_V           , KC_B             ,
 KC_LCTL           , OSM(MOD_LGUI)            , KC_LALT      , KC_SPACE                 , TD(TD_LAYER_FN) ,
 
@@ -238,7 +246,7 @@ _______               , _______       , _______
 [_GAMES_SELECT_LAYER] = LAYOUT_ergodox(
 // left hand
 
-TO(_BASE_LAYER) , TO(_DDO_LAYER) , TO(_LOTRO_LAYER) , TO(_EQ_LAYER) , XXXXXXX , XXXXXXX , XXXXXXX ,
+TO(_BASE_LAYER) , TO(_DDO_LAYER) , TO(_LOTRO_LAYER) , TO(_EQ_LAYER) , TO(_IMPACT_LAYER) , XXXXXXX , XXXXXXX ,
 XXXXXXX         , XXXXXXX        , XXXXXXX          , XXXXXXX            , XXXXXXX , XXXXXXX , XXXXXXX ,
 XXXXXXX         , XXXXXXX        , XXXXXXX          , XXXXXXX            , XXXXXXX , XXXXXXX ,
 XXXXXXX         , XXXXXXX        , XXXXXXX          , XXXXXXX            , XXXXXXX , XXXXXXX , XXXXXXX ,
@@ -330,7 +338,7 @@ XXXXXXX         , XXXXXXX , XXXXXXX
 // left hand
 
 TD(TD_ESC_ZERO)         , TD(TD_1_SH_1)  , TD(TD_2_SH_2) , TD(TD_3_SH_3)  , TD(TD_4_SH_4)         , TD(TD_5_SH_5)     , TD(TD_6_SH_6)     ,
-TD(TD_SH_TAB)           , TD(TD_SH_Q)    , TD(TD_SH_W)   , TD(TD_SH_E)    , TD(TD_SH_R)           , TD(TD_SH_T)       , TD(TD_GRAVE_TAB)  ,
+TD(TD_SH_TAB)           , TD(TD_SH_Q)    , TD(TD_SH_W)   , TD(TD_SH_E)    , TD(TD_SH_R)           , TD(TD_SH_T)       , TD(TD_GRAVE_DBL)  ,
 TD(TD_NLCK_SLCK_TOGGLE) , TD(TD_SH_A)    , TD(TD_SH_S)   , TD(TD_SH_D)    , TD(TD_SH_F)           , TD(TD_SH_G)       ,
 KC_LSFT                 , TD(TD_SH_NUBS) , TD(TD_SH_Z)   , TD(TD_SH_X)    , TD(TD_SH_C)           , TD(TD_SH_V)       , TD(TD_SH_B)       ,
 KC_LCTL                 , KC_KP_DOT      , KC_LALT       , KC_INSERT      , OSL(_LOTRO_LAYER_FN)                ,
@@ -391,7 +399,7 @@ KC_BTN3              , KC_BTN2              , KC_BTN1
 // left hand
 
 TD(TD_ESC_ZERO)         , TD(TD_1_SH_1)  , TD(TD_2_SH_2) , TD(TD_3_SH_3)  , TD(TD_4_SH_4)         , TD(TD_5_SH_5)     , TD(TD_6_SH_6)     ,
-TD(TD_SH_TAB)           , TD(TD_SH_Q)    , TD(TD_SH_W)   , TD(TD_SH_E)    , TD(TD_SH_R)           , TD(TD_SH_T)       , TD(TD_GRAVE_TAB)  ,
+TD(TD_SH_TAB)           , TD(TD_SH_Q)    , TD(TD_SH_W)   , TD(TD_SH_E)    , TD(TD_SH_R)           , TD(TD_SH_T)       , TD(TD_GRAVE_DBL)  ,
 TD(TD_NLCK_SLCK_TOGGLE) , TD(TD_SH_A)    , TD(TD_SH_S)   , TD(TD_SH_D)    , TD(TD_SH_F)           , TD(TD_SH_G)       ,
 KC_LSFT                 , TD(TD_SH_NUBS) , TD(TD_SH_Z)   , TD(TD_SH_X)    , TD(TD_SH_C)           , TD(TD_SH_V)       , TD(TD_SH_B)       ,
 KC_LCTL                 , KC_KP_DOT      , KC_LALT       , KC_INSERT     , TO(_EQ_LAYER_FN)                ,
@@ -420,11 +428,12 @@ KC_KP_PLUS              , KC_DEL         , KC_SPC
 
 [_EQ_LAYER_FN] = LAYOUT_ergodox(
 // _EQ_LAYER_FN
+
 // left hand
 
 TD(TD_ESC_ZERO)   , TD(TDT_1_F1)   , TD(TDT_2_F2) , TD(TDT_3_F3)              , TD(TDT_4_F4)     , TD(TDT_5_F5) , TD(TDT_6_F6)      ,
-KC_TAB            , KC_Q          , KC_W        , KC_E                     , KC_R            , KC_T        , TD(TD_GRAVE_TAB) ,
-TD(TD_GRAVE_CAPS) , KC_A          , KC_S        , KC_D                     , KC_F            , KC_G        ,
+KC_TAB            , KC_Q          , KC_W        , KC_E                     , KC_R            , KC_T        , TD(TD_GRAVE_DBL) ,
+TD(TD_GRAVE_TAB_CAPS) , KC_A          , KC_S        , KC_D                     , KC_F            , KC_G        ,
 KC_LSFT           , KC_NUBS       , KC_Z        , KC_X                     , KC_C            , KC_V        , KC_B             ,
 KC_LCTL           , OSM(MOD_LGUI) , KC_LALT     , TD(TD_INSERT_COPY_PASTE) , TO(_EQ_LAYER) ,
 
@@ -450,8 +459,55 @@ KC_DOWN               , KC_DEL        , KC_SPC
 
 )                     ,
 
-}; // END OF KEYMAPS
 
+[_IMPACT_LAYER] = LAYOUT_ergodox(
+// left hand
+
+TD(TD_ESC_ZERO)                      , TD(TD_1_ALT_1)           , TD(TD_2_ALT_2)  , TD(TD_3_ALT_3)     , TD(TD_4_ALT_4)       , TD(TD_5_ALT_5)  , TD(TD_6_ALT_6)   ,
+KC_TAB                               , KC_MS_WH_UP              , KC_BTN3         , KC_BTN2            , KC_R                 , KC_BTN3         , KC_ACL2          ,
+XXXXXXX                              , KC_MS_WH_DOWN            , KC_Q            , KC_BTN1            , KC_E                 , XXXXXXX         ,
+KC_LSFT                              , XXXXXXX                  , XXXXXXX         , XXXXXXX            , KC_C              , KC_V         , KC_ACL1          ,
+KC_LCTL                              , OSM(MOD_LGUI)            , KC_LALT         , KC_SPACE           , TO(_IMPACT_LAYER_FN) ,
+// left thumb
+                                       KC_A                     , KC_D            ,
+                                                                  KC_MS_U         ,
+KC_ENT                               , KC_SPACE                 , KC_MS_D         ,
+// right hand
+TD(TD_1_ALT_1)                       , TD(TD_2_ALT_2)           , TD(TD_3_ALT_3)  , TD(TD_4_ALT_4)     , TD(TD_5_ALT_5)       , TD(TD_6_ALT_6)  , KC_ESC           ,
+XXXXXXX                              , KC_BTN3                  , KC_Q            , KC_W               , KC_E                 , KC_R            , KC_LALT          ,
+                           KC_Z      , KC_MS_L                  , KC_S            , KC_MS_R            , KC_F                 , KC_T            ,
+XXXXXXX                              , KC_J                     , KC_M            , KC_X               , XXXXXXX              , XXXXXXX         , KC_RSFT          ,
+TO(_IMPACT_LAYER_FN)                 , KC_A                     , KC_D            , KC_LALT            , KC_LCTL              ,
+// right thumb
+KC_B                                 , KC_C                     ,
+KC_V                                 ,
+KC_Y                                 , KC_ENT                   , KC_SPACE
+)                                    ,
+
+[_IMPACT_LAYER_FN] = LAYOUT_ergodox(
+// left hand
+TD(TD_ESC_ZERO)                      , TD(TDT_1_F1)             , TD(TDT_2_F2)    , TD(TDT_3_F3)       , TD(TDT_4_F4)         , TD(TDT_5_F5)    , TD(TDT_6_F6)     ,
+KC_TAB                               , KC_Q                     , KC_W            , KC_E               , KC_R                 , KC_T            , KC_GRAVE ,
+TD(TD_GRAVE_TAB_CAPS)                , KC_A                     , KC_S            , KC_D               , KC_F                 , KC_G            ,
+KC_LSFT                              , KC_NUBS                  , KC_Z            , KC_X               , KC_C                 , KC_V            , KC_B             ,
+KC_LCTL                              , OSM(MOD_LGUI)            , KC_LALT         , KC_SPACE           , TO(_IMPACT_LAYER)    ,
+// left thumb
+KC_PSCR                              , KC_SCROLLLOCK            ,
+KC_PGUP                              ,
+KC_ENT                               , TD(TD_INSERT_COPY_PASTE) , KC_PGDN         ,
+// right hand
+TD(TD_F1_SH_F1)                      , TD(TD_F2_SH_F2)          , TD(TD_F3_SH_F3) , TD(TD_F4_SH_F4)    , TD(TD_F5_SH_F5)      , TD(TD_F6_SH_F6) , KC_BSPC          ,
+KC_HOME                              , KC_Y                     , KC_U            , KC_I               , KC_O                 , KC_P            , KC_NUHS          ,
+KC_H                                 , KC_J                     , KC_K            , KC_L               , KC_SCLN              , KC_QUOT         ,
+KC_END                               , KC_N                     , KC_M            , KC_COMM            , KC_DOT               , KC_SLSH         , KC_RSFT          ,
+TO(_IMPACT_LAYER)                    , KC_LBRC                  , KC_RBRC         , TD(TD_ALTS_TOGGLE) , KC_LCTL              ,
+// right thumb
+KC_LEFT                              , KC_RGHT                  ,
+KC_UP                                ,
+KC_DOWN                              , KC_DEL                   , KC_SPC
+)
+
+}; // END OF KEYMAPS
 
 void variable_delay(int duration) {
   switch(duration) {
@@ -584,6 +640,12 @@ void matrix_scan_user(void) {
         case _EQ_LAYER_FN:
             single_led(1, LED_BRIGHTNESS_LO);
             break;
+        case _IMPACT_LAYER:
+            single_led(3, LED_BRIGHTNESS_HI);
+            break;
+        case _IMPACT_LAYER_FN:
+            led_wave2(40);
+            break;
         default:
             break;
     }
@@ -631,17 +693,25 @@ void dance_layers_finish(qk_tap_dance_state_t *state, void *user_data) {
   }
 }
 
-void grave_caps(qk_tap_dance_state_t *state, void *user_data) {
+void grave_tab_caps(qk_tap_dance_state_t *state, void *user_data) {
+  switch (state->count) {
+    case 1:
+      SEND_STRING(SS_TAP(X_GRAVE) SS_TAP(X_TAB));
+      break;
+    default:
+      SEND_STRING(SS_TAP(X_CAPSLOCK));
+      break;
+  }
+}
+
+void grave_dbl(qk_tap_dance_state_t *state, void *user_data) {
   switch (state->count) {
     case 1:
       SEND_STRING(SS_TAP(X_GRAVE));
       break;
-    case 2:
-      SEND_STRING(SS_TAP(X_GRAVE));
-      SEND_STRING(SS_TAP(X_GRAVE));
-      break;
     default:
-      SEND_STRING(SS_TAP(X_CAPSLOCK));
+      SEND_STRING(SS_TAP(X_GRAVE));
+      SEND_STRING(SS_TAP(X_GRAVE));
       break;
   }
 }
@@ -663,9 +733,6 @@ void esc_to_zero(qk_tap_dance_state_t *state, void *user_data) {
   }
 }
 
-void grave_tab(qk_tap_dance_state_t *state, void *user_data) {
-    SEND_STRING(SS_TAP(X_GRAVE) SS_TAP(X_TAB));
-}
 
 void insert_copy_paste(qk_tap_dance_state_t *state, void *user_data) {
   switch (state->count)
@@ -856,8 +923,8 @@ qk_tap_dance_action_t tap_dance_actions[] = {
   [TD_INSERT_COPY_PASTE] = ACTION_TAP_DANCE_FN(insert_copy_paste),
   [TD_ALTS_TOGGLE] = ACTION_TAP_DANCE_DOUBLE(KC_LALT, KC_RALT),
   [TD_NLCK_SLCK_TOGGLE] = ACTION_TAP_DANCE_DOUBLE(KC_NLCK, KC_SCROLLLOCK),
-  [TD_GRAVE_CAPS] = ACTION_TAP_DANCE_FN(grave_caps),
-  [TD_GRAVE_TAB] = ACTION_TAP_DANCE_FN(grave_tab),
+  [TD_GRAVE_TAB_CAPS] = ACTION_TAP_DANCE_FN(grave_tab_caps),
+  [TD_GRAVE_DBL] = ACTION_TAP_DANCE_FN(grave_dbl),
   [TD_ESC_ZERO] = ACTION_TAP_DANCE_FN(esc_to_zero),
   [TD_HASH_SHIFT] = ACTION_TAP_DANCE_DOUBLE(KC_NUHS, LSFT(KC_NUHS)),
   [TD_1_SH_1] = ACTION_TAP_DANCE_DOUBLE(KC_1, LSFT(KC_1)),
@@ -870,6 +937,12 @@ qk_tap_dance_action_t tap_dance_actions[] = {
   [TD_8_SH_8] = ACTION_TAP_DANCE_DOUBLE(KC_8, LSFT(KC_8)),
   [TD_9_SH_9] = ACTION_TAP_DANCE_DOUBLE(KC_9, LSFT(KC_9)),
   [TD_0_SH_0] = ACTION_TAP_DANCE_DOUBLE(KC_0, LSFT(KC_0)),
+  [TD_1_ALT_1] = ACTION_TAP_DANCE_DOUBLE(KC_1, LALT(KC_1)),
+  [TD_2_ALT_2] = ACTION_TAP_DANCE_DOUBLE(KC_2, LALT(KC_2)),
+  [TD_3_ALT_3] = ACTION_TAP_DANCE_DOUBLE(KC_3, LALT(KC_3)),
+  [TD_4_ALT_4] = ACTION_TAP_DANCE_DOUBLE(KC_4, LALT(KC_4)),
+  [TD_5_ALT_5] = ACTION_TAP_DANCE_DOUBLE(KC_5, LALT(KC_5)),
+  [TD_6_ALT_6] = ACTION_TAP_DANCE_DOUBLE(KC_6, LALT(KC_6)),
   [TD_MINUS_SH_MINUS] = ACTION_TAP_DANCE_DOUBLE(KC_MINUS, LSFT(KC_MINUS)),
   [TD_EQL_SH_EQL] = ACTION_TAP_DANCE_DOUBLE(KC_EQL, LSFT(KC_EQL)),
   [TDT_1_F1] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, k1_finished, k1_reset),

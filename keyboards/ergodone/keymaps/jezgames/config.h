@@ -15,11 +15,36 @@
 #define MATRIX_ROWS 6
 #define MATRIX_COLS 14
 
+#endif
+
+// Mouse control
+// https://github.com/qmk/qmk_firmware/blob/master/docs/feature_mouse_keys.md
+// constant mode (velocity)
+#define MK_3_SPEED
+// KC_ACL0 < KC_ACL1 < unmodified < KC_ACL2
+// Cursor offset per movement (unmodified)
+#define MK_C_OFFSET_UNMOD 16
+// Time between cursor movements (unmodified)
+#define MK_C_INTERVAL_UNMOD 16
+// Cursor offset per movement (KC_ACL0)
+#define MK_C_OFFSET_0 4
+// Time between cursor movements (KC_ACL0)
+#define MK_C_INTERVAL_0 16
+// Cursor offset per movement (KC_ACL1)
+#define MK_C_OFFSET_1 32
+// Time between cursor movements (KC_ACL1)
+#define MK_C_INTERVAL_1 16
+// Cursor offset per movement (KC_ACL2)
+#define MK_C_OFFSET_2 48
+// Time between cursor movements (KC_ACL2)
+#define MK_C_INTERVAL_2 16
+
 #define MOUSEKEY_INTERVAL       20
 #define MOUSEKEY_DELAY          0
 #define MOUSEKEY_TIME_TO_MAX    60
 #define MOUSEKEY_MAX_SPEED      7
 #define MOUSEKEY_WHEEL_DELAY 0
+
 
 #define TAPPING_TOGGLE  1
 
@@ -77,5 +102,3 @@
 //#define NO_ACTION_MACRO
 //#define NO_ACTION_FUNCTION
 //#define DEBUG_MATRIX_SCAN_RATE
-
-#endif
