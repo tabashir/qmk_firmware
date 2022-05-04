@@ -250,7 +250,7 @@ TO(_BASE_LAYER) , TO(_DDO_LAYER) , TO(_LOTRO_LAYER) , TO(_EQ_LAYER) , TO(_IMPACT
 XXXXXXX         , XXXXXXX        , XXXXXXX          , XXXXXXX            , XXXXXXX , XXXXXXX , XXXXXXX ,
 XXXXXXX         , XXXXXXX        , XXXXXXX          , XXXXXXX            , XXXXXXX , XXXXXXX ,
 XXXXXXX         , XXXXXXX        , XXXXXXX          , XXXXXXX            , XXXXXXX , XXXXXXX , XXXXXXX ,
-XXXXXXX         , XXXXXXX        , XXXXXXX          , XXXXXXX            , _______ ,
+XXXXXXX         , XXXXXXX        , XXXXXXX          , XXXXXXX            , TD(TD_LAYER_FN) ,
 
 // left thumb
 
@@ -264,7 +264,7 @@ XXXXXXX               , XXXXXXX       , XXXXXXX       , XXXXXXX                 
 XXXXXXX               , XXXXXXX       , XXXXXXX       , XXXXXXX                  , XXXXXXX         , XXXXXXX        , XXXXXXX          ,
 XXXXXXX               , XXXXXXX       , XXXXXXX       , XXXXXXX                  , XXXXXXX         , XXXXXXX        ,
 XXXXXXX               , XXXXXXX       , XXXXXXX       , XXXXXXX                  , XXXXXXX         , XXXXXXX        , XXXXXXX          ,
-_______               , XXXXXXX       , XXXXXXX       , XXXXXXX                  , XXXXXXX         ,
+TD(TD_LAYER_FN)       , XXXXXXX       , XXXXXXX       , XXXXXXX                  , XXXXXXX         ,
 
 // right thumb
 
@@ -464,19 +464,19 @@ KC_DOWN               , KC_DEL        , KC_SPC
 // left hand
 
 TD(TD_ESC_ZERO)                      , TD(TD_1_ALT_1)           , TD(TD_2_ALT_2)  , TD(TD_3_ALT_3)     , TD(TD_4_ALT_4)       , TD(TD_5_ALT_5)  , TD(TD_6_ALT_6)   ,
-KC_TAB                               , KC_MS_WH_UP              , KC_BTN3         , KC_BTN2            , KC_R                 , KC_BTN3         , KC_ACL2          ,
-XXXXXXX                              , KC_MS_WH_DOWN            , KC_Q            , KC_BTN1            , KC_E                 , XXXXXXX         ,
-KC_LSFT                              , XXXXXXX                  , XXXXXXX         , XXXXXXX            , KC_C              , KC_V         , KC_ACL1          ,
+KC_TAB                               , LALT(KC_1)               , LALT(KC_2)      , LALT(KC_3)         , LALT(KC_4)           , LALT(KC_5)      , KC_ACL1          ,
+KC_LSFT                              , KC_MS_WH_UP              , KC_Q            , KC_BTN1            , KC_E                 , KC_Z            ,
+KC_LSFT                              , KC_MS_WH_DOWN            , KC_BTN3         , KC_BTN2            , KC_R                 , KC_V            , KC_ACL0          ,
 KC_LCTL                              , OSM(MOD_LGUI)            , KC_LALT         , KC_SPACE           , TO(_IMPACT_LAYER_FN) ,
 // left thumb
                                        KC_A                     , KC_D            ,
                                                                   KC_MS_U         ,
 KC_ENT                               , KC_SPACE                 , KC_MS_D         ,
 // right hand
-TD(TD_1_ALT_1)                       , TD(TD_2_ALT_2)           , TD(TD_3_ALT_3)  , TD(TD_4_ALT_4)     , TD(TD_5_ALT_5)       , TD(TD_6_ALT_6)  , KC_ESC           ,
-XXXXXXX                              , KC_BTN3                  , KC_Q            , KC_W               , KC_E                 , KC_R            , KC_LALT          ,
+KC_F1                       , KC_F2           , KC_F3  , KC_F4     , KC_F5       , KC_F6  , KC_ESC           ,
+XXXXXXX                              , KC_BTN3                  , KC_A            , KC_W               , KC_D                 , KC_R            , KC_LALT          ,
                            KC_Z      , KC_MS_L                  , KC_S            , KC_MS_R            , KC_F                 , KC_T            ,
-XXXXXXX                              , KC_J                     , KC_M            , KC_X               , XXXXXXX              , XXXXXXX         , KC_RSFT          ,
+XXXXXXX                              , KC_J                     , KC_M            , KC_X               , KC_B              , KC_L         , KC_LSFT          ,
 TO(_IMPACT_LAYER_FN)                 , KC_A                     , KC_D            , KC_LALT            , KC_LCTL              ,
 // right thumb
 KC_B                                 , KC_C                     ,
@@ -622,31 +622,25 @@ void matrix_scan_user(void) {
             single_led(1, LED_BRIGHTNESS_LO);
             break;
         case _DDO_LAYER_FN:
-            ergodox_right_led_1_on();
-            ergodox_right_led_2_on();
-            ergodox_right_led_3_on();
+            led_wave2(80);
             break;
         case _LOTRO_LAYER:
             red_led(2, LED_BRIGHTNESS_LO);
             break;
         case _LOTRO_LAYER_FN:
-            ergodox_right_led_1_on();
-            ergodox_right_led_2_on();
-            ergodox_right_led_3_on();
+            led_wave2(20);
             break;
         case _EQ_LAYER:
             red_led(3, LED_BRIGHTNESS_LO);
             break;
         case _EQ_LAYER_FN:
-            single_led(1, LED_BRIGHTNESS_LO);
+            led_wave2(30);
             break;
         case _IMPACT_LAYER:
             single_led(3, LED_BRIGHTNESS_HI);
             break;
         case _IMPACT_LAYER_FN:
             led_wave2(40);
-            break;
-        default:
             break;
     }
 
@@ -679,7 +673,7 @@ void dance_layers(qk_tap_dance_state_t *state, void *user_data) {
     layer_on(_BASE_LAYER_MOUSE);
     layer_off(_BASE_LAYER_FN);
     break;
-  case 4: //games Select layer on
+  default: //games Select layer on
     layer_move(_GAMES_SELECT_LAYER);
     break;
   }
@@ -718,17 +712,15 @@ void grave_dbl(qk_tap_dance_state_t *state, void *user_data) {
 
 void esc_to_zero(qk_tap_dance_state_t *state, void *user_data) {
   switch (state->count) {
-    case 3:
-      layer_move(_BASE_LAYER);
+    case 1:
+      tap_code(KC_ESC);
       break;
-    case 4:
-      layer_move(_BASE_LAYER);
-      break;
-    case 5:
-      layer_move(_BASE_LAYER);
+    case 2:
+      tap_code(KC_ESC);
+      tap_code(KC_ESC);
       break;
     default:
-      tap_code(KC_ESC);
+      layer_move(_BASE_LAYER);
       break;
   }
 }
