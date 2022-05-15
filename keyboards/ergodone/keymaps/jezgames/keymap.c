@@ -200,7 +200,7 @@ _______               , _______       , _______       ,
 
 // right hand
 
-KC_F7                 , KC_F8         , KC_F9         , KC_F10                   , KC_F11          , KC_F12         , KC_F13           ,
+KC_F7                 , KC_F8         , KC_F9         , KC_F10                   , KC_F11          , KC_F12         , TO(_GAMES_SELECT_LAYER)           ,
 _______               , KC_UP         , KC_7          , KC_8                     , KC_9            , KC_ASTR        , _______           ,
 KC_DOWN               , KC_4          , KC_5          , KC_6                     , KC_PLUS         , _______        ,
 _______               , KC_AMPR       , KC_1          , KC_2                     , KC_3            , KC_BSLS        , _______          ,
@@ -473,7 +473,7 @@ KC_LCTL                              , OSM(MOD_LGUI)            , KC_LALT       
                                                                   KC_MS_U         ,
 KC_ENT                               , KC_SPACE                 , KC_MS_D         ,
 // right hand
-KC_F1                       , KC_F2           , KC_F3  , KC_F4     , KC_F5       , KC_F6  , KC_ESC           ,
+KC_F1                       , KC_F2           , KC_F3  , KC_F4     , KC_F5       , KC_F6  , KC_F20           ,
 XXXXXXX                              , KC_BTN3                  , KC_A            , KC_W               , KC_D                 , KC_R            , KC_LALT          ,
                            KC_Z      , KC_MS_L                  , KC_S            , KC_MS_R            , KC_F                 , KC_T            ,
 XXXXXXX                              , KC_J                     , KC_M            , KC_X               , KC_B              , KC_L         , KC_LSFT          ,
@@ -661,6 +661,7 @@ void dance_layers(qk_tap_dance_state_t *state, void *user_data) {
   case 1: //off all layers, just base on
     if (!state->pressed)
     {
+      layer_clear();
       layer_move(_BASE_LAYER);
       fn_held = false;
     }
@@ -674,6 +675,7 @@ void dance_layers(qk_tap_dance_state_t *state, void *user_data) {
     layer_off(_BASE_LAYER_FN);
     break;
   default: //games Select layer on
+    layer_clear();
     layer_move(_GAMES_SELECT_LAYER);
     break;
   }
@@ -720,6 +722,7 @@ void esc_to_zero(qk_tap_dance_state_t *state, void *user_data) {
       tap_code(KC_ESC);
       break;
     default:
+      layer_clear();
       layer_move(_BASE_LAYER);
       break;
   }
