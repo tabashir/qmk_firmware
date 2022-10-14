@@ -3,9 +3,11 @@
 #include <util/delay.h>
 
 #define _BASE_LAYER 0
+#define _BASE_LAYER_FN 1
+#define _BASE_LAYER_MOUSE 2
 #define _GAMES_SELECT_LAYER 3
-#define _WASD_LAYER 4
-#define _WASD_LAYER_FN 5
+#define _DDO_LAYER 4
+#define _DDO_LAYER_FN 5
 #define _LOTRO_LAYER 6
 #define _LOTRO_LAYER_FN 7
 #define _EQ_LAYER 8
@@ -157,7 +159,7 @@ KC_ESC            , TD(TDT_1_F1)             , TD(TDT_2_F2) , TD(TDT_3_F3)      
 KC_TAB            , KC_Q                     , KC_W         , KC_E                     , KC_R            , KC_T           , TD(TD_GRAVE_DBL) ,
 TD(TD_GRAVE_TAB_CAPS) , KC_A                     , KC_S         , KC_D                     , KC_F            , KC_G           ,
 KC_LSFT           , KC_NUBS                  , KC_Z         , KC_X                     , KC_C            , KC_V           , KC_B             ,
-KC_LCTL           , OSM(MOD_LGUI)            , KC_LALT      , TD(TD_LAYER_FN)          , KC_SPACE        ,
+KC_LCTL           , OSM(MOD_LGUI)            , KC_LALT      , KC_SPACE                 , TD(TD_LAYER_FN) ,
 
 // left thumb
 
@@ -181,14 +183,74 @@ KC_DOWN           , KC_DEL                   , KC_SPC
 
 )                               ,
 
+[_BASE_LAYER_FN] = LAYOUT_ergodox(
+// left hand
+
+_______               , KC_F1         , KC_F2         , KC_F3                    , KC_F4           , KC_F5          , KC_F6            ,
+_______               , XXXXXXX       , KC_HOME       , KC_UP                    , KC_END          , XXXXXXX        , _______          ,
+_______               , LALT(KC_LEFT) , KC_LEFT       , KC_DOWN                  , KC_RIGHT        , LALT(KC_RIGHT) ,
+_______               , XXXXXXX       , LCTL(KC_LEFT) , XXXXXXX                  , LCTL(KC_RIGHT)  , XXXXXXX        , _______          ,
+_______               , _______       , _______       , _______                  , _______         ,
+
+// left thumb
+
+_______               , _______       ,
+_______               ,
+_______               , _______       , _______       ,
+
+// right hand
+
+KC_F7                 , KC_F8         , KC_F9         , KC_F10                   , KC_F11          , KC_F12         , TO(_GAMES_SELECT_LAYER)           ,
+_______               , KC_UP         , KC_7          , KC_8                     , KC_9            , KC_ASTR        , _______           ,
+KC_DOWN               , KC_4          , KC_5          , KC_6                     , KC_PLUS         , _______        ,
+_______               , KC_AMPR       , KC_1          , KC_2                     , KC_3            , KC_BSLS        , _______          ,
+_______               , KC_DOT        , KC_0          , KC_EQL                   , _______         ,
+
+// right thumb
+
+_______               , _______       ,
+_______               ,
+_______               , _______       , _______
+)                     ,
+
+[_BASE_LAYER_MOUSE] = LAYOUT_ergodox(
+// left hand
+
+_______               , _______       , _______       , _______                  , _______         , _______        , _______          ,
+_______               , _______       , _______       , KC_MS_U                  , _______         , _______        , KC_VOLU          ,
+_______               , _______       , KC_MS_L       , KC_MS_D                  , KC_MS_R         , _______        ,
+_______               , _______       , _______       , _______                  , _______         , _______        , KC_VOLD          ,
+_______               , _______       , KC_BTN1       , KC_BTN2                  , _______         ,
+
+// left thumb
+
+_______               , _______       ,
+_______               ,
+_______               , _______       , _______       ,
+
+// right hand
+
+_______               , _______       , _______       , _______                  , _______         , _______        , RESET          ,
+_______               , _______       , KC_HOME       , KC_UP                    , KC_END          , _______        , _______          ,
+_______               , KC_LEFT       , KC_DOWN       , KC_RGHT                  , _______         , KC_MPLY        ,
+KC_MUTE               , _______       , KC_WBAK       , KC_MPRV                  , KC_MNXT         , _______        , _______          ,
+_______               , _______       , _______       , _______                  , _______         ,
+
+// right thumb
+
+_______               , _______       ,
+_______               ,
+_______               , _______       , _______
+)                     ,
+
 [_GAMES_SELECT_LAYER] = LAYOUT_ergodox(
 // left hand
 
-TO(_BASE_LAYER) , TO(_WASD_LAYER) , TO(_LOTRO_LAYER) , TO(_EQ_LAYER) , TO(_IMPACT_LAYER) , XXXXXXX , XXXXXXX ,
+TO(_BASE_LAYER) , TO(_DDO_LAYER) , TO(_LOTRO_LAYER) , TO(_EQ_LAYER) , TO(_IMPACT_LAYER) , XXXXXXX , XXXXXXX ,
 XXXXXXX         , XXXXXXX        , XXXXXXX          , XXXXXXX            , XXXXXXX , XXXXXXX , XXXXXXX ,
 XXXXXXX         , XXXXXXX        , XXXXXXX          , XXXXXXX            , XXXXXXX , XXXXXXX ,
 XXXXXXX         , XXXXXXX        , XXXXXXX          , XXXXXXX            , XXXXXXX , XXXXXXX , XXXXXXX ,
-XXXXXXX         , XXXXXXX        , XXXXXXX          , TD(TD_LAYER_FN)    , XXXXXXX ,
+XXXXXXX         , XXXXXXX        , XXXXXXX          , XXXXXXX            , TD(TD_LAYER_FN) ,
 
 // left thumb
 
@@ -196,54 +258,60 @@ XXXXXXX               , XXXXXXX       ,
 XXXXXXX               ,
 XXXXXXX               , XXXXXXX       , XXXXXXX       ,
 
-//righthand
-XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,
-XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,
-XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,
-XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,
-TD(TD_LAYER_FN),XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,
-//rightthumb
-XXXXXXX,XXXXXXX,
-XXXXXXX,
-XXXXXXX,XXXXXXX,XXXXXXX
+// right hand
+
+XXXXXXX               , XXXXXXX       , XXXXXXX       , XXXXXXX                  , XXXXXXX         , XXXXXXX        , EEP_RST          ,
+XXXXXXX               , XXXXXXX       , XXXXXXX       , XXXXXXX                  , XXXXXXX         , XXXXXXX        , XXXXXXX          ,
+XXXXXXX               , XXXXXXX       , XXXXXXX       , XXXXXXX                  , XXXXXXX         , XXXXXXX        ,
+XXXXXXX               , XXXXXXX       , XXXXXXX       , XXXXXXX                  , XXXXXXX         , XXXXXXX        , XXXXXXX          ,
+TD(TD_LAYER_FN)       , XXXXXXX       , XXXXXXX       , XXXXXXX                  , XXXXXXX         ,
+
+// right thumb
+
+XXXXXXX               , XXXXXXX       ,
+XXXXXXX               ,
+XXXXXXX               , XXXXXXX       , XXXXXXX
 )                     ,
 
-[_WASD_LAYER] = LAYOUT_ergodox(
+[_DDO_LAYER] = LAYOUT_ergodox(
 // left hand
 
-KC_ESC            , TD(TDT_1_F1)             , TD(TDT_2_F2) , TD(TDT_3_F3)             , TD(TDT_4_F4)    , TD(TDT_5_F5)   , TD(TDT_6_F6)     ,
-KC_TAB            , KC_T                     , KC_Q         , KC_W                     , KC_E            , KC_R           , KC_ENTER ,
-TD(TD_GRAVE_TAB_CAPS) , KC_G            , KC_A                     , KC_S         , KC_D                     , KC_F            ,
-KC_LSFT           , KC_V           , KC_NUBS                  , KC_Z         , KC_X                     , KC_C            , KC_LSFT             ,
-KC_SPACE          , KC_LCTL           , KC_LALT      , TD(TD_LAYER_FN)          , KC_SPACE        ,
+TD(TD_ESC_ZERO)       , KC_1          , KC_2          , KC_3                     , KC_4            , KC_5           , KC_6             ,
+KC_TAB                , KC_Q          , KC_W          , KC_E                     , KC_R            , KC_T           , KC_I             ,
+_______               , KC_A          , KC_S          , KC_D                     , KC_F            , KC_G           ,
+_______               , KC_Z          , KC_X          , KC_C                     , KC_V            , KC_B           , KC_U             ,
+KC_LCTL               , KC_7          , KC_8          , KC_9                     , KC_0            ,
 
 // left thumb
 
-KC_INS               , KC_DEL       ,
-KC_PGUP              ,
-KC_ENTER             , KC_SPACE       , KC_PGDN       ,
+KC_MS_L               , KC_MS_R       ,
+KC_MS_U               ,
+KC_SPC                , KC_PPLS       , KC_MS_D       ,
 
-//righthand
-XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,
-XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,
-XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,
-XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,
-TD(TD_LAYER_FN),XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,
-//rightthumb
-XXXXXXX,XXXXXXX,
-XXXXXXX,
-XXXXXXX,XXXXXXX,XXXXXXX
+// right hand
+
+KC_RBRC               , KC_INS        , KC_NLCK       , KC_PSLS                  , KC_PAST         , KC_DEL         , KC_PMNS          ,
+KC_NUHS               , KC_PGUP       , KC_P7         , KC_P8                    , KC_P9           , KC_END         , KC_HOME          ,
+KC_PGDN               , KC_P4         , KC_P5         , KC_P6                    , KC_M            , KC_PPLS        ,
+KC_ENT                , XXXXXXX       , KC_P1         , KC_P2                    , KC_P3           , KC_J           , KC_PENT          ,
+KC_SPC                , KC_P0         , KC_PDOT       , KC_L                     , KC_PENT         ,
+
+// right thumb
+
+KC_BTN1               , KC_BTN2       ,
+KC_BTN3               ,
+TG(_DDO_LAYER_FN)    , KC_SPC        , KC_RGHT
 )                     ,
 
-[_WASD_LAYER_FN] = LAYOUT_ergodox(
-// _WASD_LAYER_FN
+[_DDO_LAYER_FN] = LAYOUT_ergodox(
+// _DDO_LAYER_FN
 // left hand
 
 TO(_BASE_LAYER) , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX ,
 XXXXXXX         , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX ,
 XXXXXXX         , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX ,
 XXXXXXX         , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX ,
-XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX ,
+TO(_BASE_LAYER) , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX ,
 
 // left thumb
 
@@ -396,25 +464,48 @@ KC_DOWN               , KC_DEL        , KC_SPC
 // left hand
 
 TD(TD_ESC_ZERO)                      , TD(TD_1_ALT_1)           , TD(TD_2_ALT_2)  , TD(TD_3_ALT_3)     , TD(TD_4_ALT_4)       , TD(TD_5_ALT_5)  , TD(TD_6_ALT_6)   ,
-KC_B                               , KC_T                     , KC_Q            , KC_W               , KC_E                 , KC_R            , KC_Z          ,
-KC_L                              , KC_G                     , KC_MS_L          , KC_S            , KC_MS_R                 , KC_F            ,
-KC_M                              , KC_V                     , KC_A             , KC_W            , KC_D                    , KC_BTN2            , KC_F          ,
-KC_SPACE                             , KC_BTN1                  , KC_BTN3         , TD(TD_LAYER_FN) , KC_SPACE, 
+KC_TAB                               , LALT(KC_1)               , LALT(KC_2)      , LALT(KC_3)         , LALT(KC_4)           , LALT(KC_5)      , KC_ACL1          ,
+KC_LSFT                              , KC_MS_WH_UP              , KC_Q            , KC_BTN1            , KC_E                 , KC_Z            ,
+KC_LSFT                              , KC_MS_WH_DOWN            , KC_BTN3         , KC_BTN2            , KC_R                 , KC_V            , KC_ACL0          ,
+KC_LCTL                              , OSM(MOD_LGUI)            , KC_LALT         , KC_SPACE           , TO(_IMPACT_LAYER_FN) ,
 // left thumb
-KC_J                     , KC_V           ,
-KC_U        ,
-KC_ENT         , KC_SPACE  , KC_X         ,
-//righthand
-XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,
-XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,
-XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,
-XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,
-TD(TD_LAYER_FN),XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,
-//rightthumb
-XXXXXXX,XXXXXXX,
-XXXXXXX,
-XXXXXXX,XXXXXXX,XXXXXXX
+                                       KC_A                     , KC_D            ,
+                                                                  KC_MS_U         ,
+KC_ENT                               , KC_SPACE                 , KC_MS_D         ,
+// right hand
+KC_F1                       , KC_F2           , KC_F3  , KC_F4     , KC_F5       , KC_F6  , KC_F20           ,
+XXXXXXX                              , KC_BTN3                  , KC_A            , KC_W               , KC_D                 , KC_R            , KC_LALT          ,
+                           KC_Z      , KC_MS_L                  , KC_S            , KC_MS_R            , KC_F                 , KC_T            ,
+XXXXXXX                              , KC_J                     , KC_M            , KC_X               , KC_B              , KC_L         , KC_LSFT          ,
+TO(_IMPACT_LAYER_FN)                 , KC_A                     , KC_D            , KC_LALT            , KC_LCTL              ,
+// right thumb
+KC_B                                 , KC_C                     ,
+KC_V                                 ,
+KC_Y                                 , KC_ENT                   , KC_SPACE
 )                                    ,
+
+[_IMPACT_LAYER_FN] = LAYOUT_ergodox(
+// left hand
+TD(TD_ESC_ZERO)                      , TD(TDT_1_F1)             , TD(TDT_2_F2)    , TD(TDT_3_F3)       , TD(TDT_4_F4)         , TD(TDT_5_F5)    , TD(TDT_6_F6)     ,
+KC_TAB                               , KC_Q                     , KC_W            , KC_E               , KC_R                 , KC_T            , KC_GRAVE ,
+TD(TD_GRAVE_TAB_CAPS)                , KC_A                     , KC_S            , KC_D               , KC_F                 , KC_G            ,
+KC_LSFT                              , KC_NUBS                  , KC_Z            , KC_X               , KC_C                 , KC_V            , KC_B             ,
+KC_LCTL                              , OSM(MOD_LGUI)            , KC_LALT         , KC_SPACE           , TO(_IMPACT_LAYER)    ,
+// left thumb
+KC_PSCR                              , KC_SCROLLLOCK            ,
+KC_PGUP                              ,
+KC_ENT                               , TD(TD_INSERT_COPY_PASTE) , KC_PGDN         ,
+// right hand
+TD(TD_F1_SH_F1)                      , TD(TD_F2_SH_F2)          , TD(TD_F3_SH_F3) , TD(TD_F4_SH_F4)    , TD(TD_F5_SH_F5)      , TD(TD_F6_SH_F6) , KC_BSPC          ,
+KC_HOME                              , KC_Y                     , KC_U            , KC_I               , KC_O                 , KC_P            , KC_NUHS          ,
+KC_H                                 , KC_J                     , KC_K            , KC_L               , KC_SCLN              , KC_QUOT         ,
+KC_END                               , KC_N                     , KC_M            , KC_COMM            , KC_DOT               , KC_SLSH         , KC_RSFT          ,
+TO(_IMPACT_LAYER)                    , KC_LBRC                  , KC_RBRC         , TD(TD_ALTS_TOGGLE) , KC_LCTL              ,
+// right thumb
+KC_LEFT                              , KC_RGHT                  ,
+KC_UP                                ,
+KC_DOWN                              , KC_DEL                   , KC_SPC
+)
 
 }; // END OF KEYMAPS
 
@@ -527,10 +618,10 @@ void matrix_scan_user(void) {
         case _GAMES_SELECT_LAYER:
             led_wave2(20);
             break;
-        case _WASD_LAYER:
+        case _DDO_LAYER:
             single_led(1, LED_BRIGHTNESS_LO);
             break;
-        case _WASD_LAYER_FN:
+        case _DDO_LAYER_FN:
             led_wave2(80);
             break;
         case _LOTRO_LAYER:
@@ -562,7 +653,7 @@ bool fn_held;
 void dance_layers(qk_tap_dance_state_t *state, void *user_data) {
   if (state->pressed)
   {
-    layer_on(_GAMES_SELECT_LAYER);
+    layer_on(_BASE_LAYER_FN);
     fn_held = true;
   }
   switch (state->count)
@@ -574,6 +665,14 @@ void dance_layers(qk_tap_dance_state_t *state, void *user_data) {
       layer_move(_BASE_LAYER);
       fn_held = false;
     }
+    break;
+  case 2: //function layer on
+    layer_on(_BASE_LAYER_FN);
+    layer_off(_BASE_LAYER_MOUSE);
+    break;
+  case 3: //mouse layer on
+    layer_on(_BASE_LAYER_MOUSE);
+    layer_off(_BASE_LAYER_FN);
     break;
   default: //games Select layer on
     layer_clear();
