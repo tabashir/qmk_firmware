@@ -170,16 +170,16 @@ KC_ENT            , TD(TD_INSERT_COPY_PASTE) , KC_PGDN      ,
 // right hand
 
 TD(TDT_7_F7)      , TD(TDT_8_F8)             , TD(TDT_9_F9) , TD(TDT_0_F10)            , TD(TDT_11_F11)  , TD(TDT_12_F12) , KC_BSPC          ,
-KC_HOME           , KC_Y                     , KC_U         , KC_I                     , KC_O            , KC_P           , KC_NUHS          ,
-KC_H              , KC_J                     , KC_K         , KC_L                     , KC_SCLN         , KC_QUOT        ,
-KC_END            , KC_N                     , KC_M         , KC_COMM                  , KC_DOT          , KC_SLSH        , KC_RSFT          ,
+KC_UP           , KC_Y                     , KC_U         , KC_I                     , KC_O            , KC_P           , KC_NUHS          ,
+                  KC_H            , KC_J                     , KC_K         , KC_L                     , KC_SCLN         , KC_QUOT        ,
+KC_DOWN            , KC_N                     , KC_M         , KC_COMM                  , KC_DOT          , KC_SLSH        , KC_RSFT          ,
 TD(TD_LAYER_FN)   , KC_LBRC                  , KC_RBRC      , TD(TD_ALTS_TOGGLE)       , KC_LCTL         ,
 
 // right thumb
 
 KC_LEFT           , KC_RGHT                  ,
-KC_UP             ,
-KC_DOWN           , KC_DEL                   , KC_SPC
+KC_HOME             ,
+KC_END           , KC_DEL                   , KC_SPC
 
 )                               ,
 
