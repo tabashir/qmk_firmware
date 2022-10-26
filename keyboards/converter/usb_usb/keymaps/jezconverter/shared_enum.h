@@ -3,11 +3,9 @@
 enum keyboard_layer {
     // Base layers
     _QWERTY,
-    // Intermediate layers
     _LAYER_CHOOSER,
-    _IMPACT,
-    // Adjust layer at the end
-    _ADJUST
+    _GAMES,
+    _IMPACT
 };
 
 enum {
