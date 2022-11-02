@@ -58,10 +58,26 @@ void esc_to_zero(qk_tap_dance_state_t *state, void *user_data) {
   }
 };
 
+void all_atk(qk_tap_dance_state_t *state, void *user_data) {
+  tap_code(KC_BTN1);
+  tap_code(KC_E);
+  tap_code(KC_Q);
+};
+
 qk_tap_dance_action_t tap_dance_actions[] = {
   [TD_INSERT_COPY_PASTE] = ACTION_TAP_DANCE_FN(insert_copy_paste),
-  [TD_ESC_ZERO] = ACTION_TAP_DANCE_FN(esc_to_zero)
-
+  [TD_ESC_ZERO] = ACTION_TAP_DANCE_FN(esc_to_zero),
+  [TD_ATK_ALL] = ACTION_TAP_DANCE_FN(all_atk),
+  [TD_1_ALT_1] = ACTION_TAP_DANCE_DOUBLE(KC_1, LALT(KC_1)),
+  [TD_2_ALT_2] = ACTION_TAP_DANCE_DOUBLE(KC_2, LALT(KC_2)),
+  [TD_3_ALT_3] = ACTION_TAP_DANCE_DOUBLE(KC_3, LALT(KC_3)),
+  [TD_4_ALT_4] = ACTION_TAP_DANCE_DOUBLE(KC_4, LALT(KC_4)),
+  [TD_5_ALT_5] = ACTION_TAP_DANCE_DOUBLE(KC_5, LALT(KC_5)),
+  [TD_1_S_1] = ACTION_TAP_DANCE_DOUBLE(KC_1, LSFT(KC_1)),
+  [TD_2_S_2] = ACTION_TAP_DANCE_DOUBLE(KC_2, LSFT(KC_2)),
+  [TD_3_S_3] = ACTION_TAP_DANCE_DOUBLE(KC_3, LSFT(KC_3)),
+  [TD_4_S_4] = ACTION_TAP_DANCE_DOUBLE(KC_4, LSFT(KC_4)),
+  [TD_5_S_5] = ACTION_TAP_DANCE_DOUBLE(KC_5, LSFT(KC_5))
 };
 
 

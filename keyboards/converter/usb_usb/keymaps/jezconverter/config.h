@@ -34,15 +34,15 @@
 // Time between cursor movements (unmodified)
 #define MK_C_INTERVAL_UNMOD 16
 // Cursor offset per movement (KC_ACL0)
-#define MK_C_OFFSET_0 16
+#define MK_C_OFFSET_0 8
 // Time between cursor movements (KC_ACL0)
 #define MK_C_INTERVAL_0 16
 // Cursor offset per movement (KC_ACL1)
-#define MK_C_OFFSET_1 32
+#define MK_C_OFFSET_1 16
 // Time between cursor movements (KC_ACL1)
 #define MK_C_INTERVAL_1 16
 // Cursor offset per movement (KC_ACL2)
-#define MK_C_OFFSET_2 48
+#define MK_C_OFFSET_2 32
 // Time between cursor movements (KC_ACL2)
 #define MK_C_INTERVAL_2 16
 
