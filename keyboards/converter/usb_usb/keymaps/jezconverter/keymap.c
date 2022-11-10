@@ -71,7 +71,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TD(TD_ESC_ZERO) , KC_F1          , KC_F2          , KC_F3          , KC_F4          , KC_F5          , KC_F6              , KC_F7   , KC_F8 , KC_F9   , KC_F10  , KC_F11  , KC_F12  ,
         KC_PSCR         , KC_SLCK        , KC_PAUS        ,
 
-        KC_GRV          , TD(TD_1_S_1) , TD(TD_2_S_2) , TD(TD_3_S_3) , TD(TD_4_S_4) , TD(TD_5_S_5) , KC_6               , KC_7    , KC_8  , KC_9    , KC_0    , KC_MINS , KC_EQL  , KC_BSPC ,
+        KC_GRV          , TD(TD_1_S_1) , TD(TD_2_S_2) , TD(TD_3_S_3) , TD(TD_4_S_4) , TD(TD_5_S_5) , TD(TD_6_ALT_6) , TD(TD_7_ALT_7)    , TD(TD_8_ALT_8)  , TD(TD_9_ALT_9)    , TD(TD_0_ALT_0)    , KC_MINS , KC_EQL  , KC_BSPC ,
         KC_INS          , KC_HOME        , KC_PGUP        ,
         TD(TD_1_S_1)  , TD(TD_2_S_2) , TD(TD_3_S_3) , TD(TD_4_S_4) ,
 
