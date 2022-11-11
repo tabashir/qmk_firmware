@@ -10,7 +10,6 @@ enum keyboard_layer {
 
 enum {
     TD_LAYER_FN,
-    TD_INSERT_COPY_PASTE,
     TD_ESC_ZERO,
     TD_ATK_ALL,
     TD_1_ALT_1,
