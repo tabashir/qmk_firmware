@@ -44,7 +44,6 @@ void esc_to_zero(qk_tap_dance_state_t *state, void *user_data) {
 };
 
 void all_atk(qk_tap_dance_state_t *state, void *user_data) {
-  tap_code(KC_BTN1);
   tap_code(KC_E);
   tap_code(KC_Q);
 };

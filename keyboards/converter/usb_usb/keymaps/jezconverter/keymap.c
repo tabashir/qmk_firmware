@@ -100,8 +100,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TD(TD_1_ALT_1)  , TD(TD_2_ALT_2) , TD(TD_3_ALT_3) , TD(TD_4_ALT_4) ,
 
         KC_TAB          , KC_Q           , KC_W           , KC_E           , KC_R           , KC_T           , KC_Y               , KC_U    , KC_I  , KC_O    , KC_P    , KC_LBRC , KC_RBRC ,
-        KC_DEL          , KC_ACL0        , KC_B           ,
-        TD(TD_ATK_ALL)  , KC_W           , KC_E           , KC_Z           ,
+        KC_DEL          , KC_ACL0        , KC_Z           ,
+        TD(TD_ATK_ALL)  , KC_W           , KC_E           , KC_B           ,
 
         KC_BTN3         , KC_A           , KC_S           , KC_D           , KC_F           , KC_G           , KC_H               , KC_J    , KC_K  , KC_L    , KC_SCLN , KC_QUOT , KC_NUHS , KC_ENT  ,
         KC_MS_L         , KC_S           , KC_MS_R        ,
@@ -111,8 +111,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_M            , KC_J           , KC_L           , KC_F           ,
 
         KC_Q            , KC_BTN1        , KC_E           , KC_SPC         , KC_RALT        , KC_RGUI        , TO(_LAYER_CHOOSER) , KC_RCTL ,
-        KC_Q            , KC_BTN1        , KC_SPACE       ,
-        KC_LSFT         , KC_V
+        KC_Q            , KC_LSFT        , KC_SPACE       ,
+        KC_BTN1         , KC_V
     )
 };
 
