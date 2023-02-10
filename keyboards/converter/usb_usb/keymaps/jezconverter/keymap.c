@@ -44,7 +44,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     )                               ,
 
    [_LAYER_CHOOSER] = LAYOUT_fullsize_iso(
-        TD(TD_ESC_ZERO) , TO(_QWERTY) , TO(_GAMES) , TO(_IMPACT) , XXXXXXX , XXXXXXX , XXXXXXX            , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX ,
+        TD(TD_ESC_ZERO) , TO(_QWERTY) , TO(_GAMES) , TO(_IMPACT) , TO(_WOW) , XXXXXXX , XXXXXXX            , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX ,
         XXXXXXX         , XXXXXXX     , XXXXXXX    ,
 
         XXXXXXX         , XXXXXXX     , XXXXXXX    , XXXXXXX     , XXXXXXX , XXXXXXX , XXXXXXX            , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX ,
@@ -68,52 +68,110 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
    [_GAMES] = LAYOUT_fullsize_iso(
-        TD(TD_ESC_ZERO) , KC_F1          , KC_F2          , KC_F3          , KC_F4          , KC_F5          , KC_F6              , KC_F7   , KC_F8 , KC_F9   , KC_F10  , KC_F11  , KC_F12  ,
+// Function Row
+        TD(TD_ESC_ZERO) , KC_F1          , KC_F2          , KC_F3          , KC_F4          , KC_F5          , KC_F6              , KC_F7          , KC_F8          , KC_F9          , KC_F10         , KC_F11  , KC_F12  ,
+        //numpad
         KC_PSCR         , KC_SLCK        , KC_PAUS        ,
-
-        KC_GRV          , TD(TD_1_S_1) , TD(TD_2_S_2) , TD(TD_3_S_3) , TD(TD_4_S_4) , TD(TD_5_S_5) , TD(TD_6_ALT_6) , TD(TD_7_ALT_7)    , TD(TD_8_ALT_8)  , TD(TD_9_ALT_9)    , TD(TD_0_ALT_0)    , KC_MINS , KC_EQL  , KC_BSPC ,
+// Number Row
+        KC_GRV          , TD(TD_1_ALT_1) , TD(TD_2_ALT_2) , TD(TD_3_ALT_3) , TD(TD_4_ALT_4) , TD(TD_5_ALT_5) , TD(TD_6_ALT_6)     , TD(TD_7_ALT_7) , TD(TD_8_ALT_8) , TD(TD_9_ALT_9) , TD(TD_0_ALT_0) , KC_MINS , KC_EQL  , KC_BSPC ,
+        //middle
         KC_INS          , KC_HOME        , KC_PGUP        ,
-        TD(TD_1_S_1)  , TD(TD_2_S_2) , TD(TD_3_S_3) , TD(TD_4_S_4) ,
-
-        KC_TAB          , KC_Q           , KC_W           , KC_E           , KC_R           , KC_T           , KC_Y               , KC_U    , KC_I  , KC_O    , KC_P    , KC_LBRC , KC_RBRC ,
+        //numpad
+        TD(TD_1_ALT_1)  , TD(TD_2_ALT_2) , TD(TD_3_ALT_3) , TD(TD_4_ALT_4) ,
+// QWERTY Row
+        KC_TAB          , KC_Q           , KC_W           , KC_E           , KC_R           , KC_T           , KC_Y               , KC_U           , KC_I           , KC_O           , KC_P           , KC_LBRC , KC_RBRC ,
+        //middle
         KC_DEL          , KC_END         , KC_PGDN        ,
+        //numpad
         KC_Q            , KC_W           , KC_E           , KC_R           ,
-
-        KC_BTN1         , KC_A           , KC_S           , KC_D           , KC_F           , KC_G           , KC_H               , KC_J    , KC_K  , KC_L    , KC_SCLN , KC_QUOT , KC_NUHS , KC_ENT  ,
+// ASDF Row
+        KC_BTN1         , KC_A           , KC_S           , KC_D           , KC_F           , KC_G           , KC_H               , KC_J           , KC_K           , KC_L           , KC_SCLN        , KC_QUOT , KC_NUHS , KC_ENT  ,
+        //numpad
         KC_A            , KC_S           , KC_D           ,
-
-        KC_LSFT         , KC_NUBS        , KC_Z           , KC_X           , KC_C           , KC_V           , KC_B               , KC_N    , KC_M  , KC_COMM , KC_DOT  , KC_SLSH , KC_RSFT ,
+// ZXCV Row
+        KC_LSFT         , KC_NUBS        , KC_Z           , KC_X           , KC_C           , KC_V           , KC_B               , KC_N           , KC_M           , KC_COMM        , KC_DOT         , KC_SLSH , KC_RSFT ,
+        //middle
         KC_UP           ,
-        KC_Z           , KC_X            , KC_C           , KC_F           ,
-
-        KC_LCTL         , KC_LWIN         , KC_LALT        , KC_SPC         , KC_RALT        , KC_RGUI        , TO(_LAYER_CHOOSER) , KC_RCTL ,
+        //numpad
+        KC_Z            , KC_X           , KC_C           , KC_F           ,
+// Space Row
+        KC_LCTL         , KC_LWIN        , KC_LALT        , KC_SPC         , KC_RALT        , KC_RGUI        , TO(_LAYER_CHOOSER) , KC_RCTL        ,
+        //middle
         KC_LEFT         , KC_DOWN        , KC_RIGHT       ,
+        //numpad
         KC_P0           , KC_PDOT
     ),
 
    [_IMPACT] = LAYOUT_fullsize_iso(
+// Function Row
         TD(TD_ESC_ZERO) , KC_F1          , KC_F2          , KC_F3          , KC_F4          , KC_F5          , KC_F6              , KC_F7   , KC_F8 , KC_F9   , KC_F10  , KC_F11  , KC_F12  ,
-        KC_PSCR         , KC_ACL2        , KC_PAUS        ,
-
+        //numpad
+        KC_PSCR         , KC_ACL2        , KC_V        ,
+// Number Row
         KC_BTN1         , TD(TD_1_ALT_1) , TD(TD_2_ALT_2) , TD(TD_3_ALT_3) , TD(TD_4_ALT_4) , TD(TD_5_ALT_5) , KC_6               , KC_7    , KC_8  , KC_9    , KC_0    , KC_MINS , KC_EQL  , KC_BSPC ,
+        //middle
         KC_INS          , KC_ACL1        , TD(TD_5_ALT_5) ,
+        //numpad
         TD(TD_1_ALT_1)  , TD(TD_2_ALT_2) , TD(TD_3_ALT_3) , TD(TD_4_ALT_4) ,
-
+// QWERTY Row
         KC_TAB          , KC_Q           , KC_W           , KC_E           , KC_R           , KC_T           , KC_Y               , KC_U    , KC_I  , KC_O    , KC_P    , KC_LBRC , KC_RBRC ,
+        //middle
         KC_DEL          , KC_ACL0        , KC_Z           ,
-        TD(TD_ATK_ALL)  , KC_W           , KC_E           , KC_B           ,
-
+        //numpad
+        KC_A           , KC_W           , KC_D         , KC_B           ,
+// ASDF Row
         KC_BTN3         , KC_A           , KC_S           , KC_D           , KC_F           , KC_G           , KC_H               , KC_J    , KC_K  , KC_L    , KC_SCLN , KC_QUOT , KC_NUHS , KC_ENT  ,
-        KC_MS_L         , KC_S           , KC_MS_R        ,
-
+        //middle
+        KC_MS_L            , KC_S           , KC_MS_R           ,
+// ZXCV Row
         KC_LSFT         , TD(TD_ATK_ALL) , KC_Z           , KC_X           , KC_C           , KC_V           , KC_B               , KC_N    , KC_M  , KC_COMM , KC_DOT  , KC_SLSH , KC_RSFT ,
-        KC_E            ,
+        //middle
+        KC_BTN3         ,
+        //numpad
         KC_M            , KC_J           , KC_L           , KC_F           ,
-
+// Space Row
         KC_Q            , KC_BTN1        , KC_E           , KC_SPC         , KC_RALT        , KC_RGUI        , TO(_LAYER_CHOOSER) , KC_RCTL ,
-        KC_Q            , KC_LSFT        , KC_SPACE       ,
+        //middle
+        TD(TD_T_OR_X)   , KC_LSFT        , KC_SPACE       ,
+        //numpad
         KC_BTN1         , KC_V
+    ),
+
+   [_WOW] = LAYOUT_fullsize_iso(
+// Function Row
+        TD(TD_ESC_ZERO) , TD(TD_F1_S_F1), TD(TD_F2_S_F2), TD(TD_F3_S_F3), TD(TD_F4_S_F4), TD(TD_F5_S_F5), TD(TD_F6_S_F6), TD(TD_F7_S_F7), TD(TD_F8_S_F8), TD(TD_F9_S_F9), TD(TD_F10_S_F10), TD(TD_F11_S_F11), TD(TD_F12_S_F12),
+        //numpad
+        TD(TD_5_ALT_5) , TD(TD_6_ALT_6) , TD(TD_7_ALT_7) ,
+// Number Row
+        TD(TD_PGUP_S_PGUP)          , TD(TD_1_ALT_1) , TD(TD_2_ALT_2) , TD(TD_3_ALT_3) , TD(TD_4_ALT_4) , TD(TD_5_ALT_5) , TD(TD_6_ALT_6)     , TD(TD_7_ALT_7) , TD(TD_8_ALT_8) , TD(TD_9_ALT_9) , TD(TD_0_ALT_0) , KC_MINS , KC_EQL  , KC_BSPC ,
+        //middle
+        TD(TD_INS_S_INS), TD(TD_HOME_S_HOME), TD(TD_PGUP_S_PGUP),
+        //numpad
+        TD(TD_1_ALT_1)  , TD(TD_2_ALT_2)  , TD(TD_3_ALT_3) , TD(TD_4_ALT_4) ,
+// QWERTY Row
+        KC_TAB          , KC_Q           , KC_W           , KC_E           , KC_R           , KC_T           , KC_Y               , KC_U           , KC_I           , KC_O           , KC_P           , KC_LBRC , KC_RBRC ,
+        //middle
+        TD(TD_DEL_S_DEL), TD(TD_END_S_END), TD(TD_PGDN_S_PGDN),
+        //numpad
+        KC_Q            , KC_W           , KC_E           , KC_R           ,
+// ASDF Row
+        KC_BTN1         , KC_A           , KC_S           , KC_D           , KC_F           , KC_G           , KC_H               , KC_J           , KC_K           , KC_L           , KC_SCLN        , KC_QUOT , KC_NUHS , KC_ENT  ,
+        //numpad
+        KC_A            , KC_S           , KC_D           ,
+// ZXCV Row
+        KC_LSFT         , KC_NUBS        , KC_Z           , KC_X           , KC_C           , KC_V           , KC_B               , KC_N           , KC_M           , KC_COMM        , KC_DOT         , KC_SLSH , KC_RSFT ,
+        //middle
+        KC_UP           ,
+        //numpad
+        KC_Z            , KC_X           , KC_C           , KC_F           ,
+// Space Row
+        KC_LCTL         , KC_LWIN        , KC_LALT        , KC_SPC         , KC_RALT        , KC_RGUI        , TO(_LAYER_CHOOSER) , KC_RCTL        ,
+        //middle
+        KC_LCTL         , KC_LSFT        , KC_SPACE       ,
+        //numpad
+        KC_LALT           , KC_PDOT
     )
+
 };
 
 
