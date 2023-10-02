@@ -46,5 +46,13 @@ enum {
     TD_END_S_END,
     TD_PGUP_S_PGUP,
     TD_PGDN_S_PGDN,
-    TD_T_OR_X
+    TD_T_OR_X,
+    TD_1_N_ALT_1,
+    TD_2_N_ALT_2,
+    TD_3_N_ALT_3,
+    TD_4_N_ALT_4,
+    TD_5_N_ALT_5,
+    TD_6_N_ALT_6,
+    TD_7_N_ALT_7,
+    TD_8_N_ALT_8
 };

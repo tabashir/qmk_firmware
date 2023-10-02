@@ -8,6 +8,7 @@ enum tap_dance_state {
     TRIPLE_TAP,
 };
 
+static int tap_state   = 0;
 
 // Watch the state of the tap dance
 int cur_dance(qk_tap_dance_state_t *state) {
@@ -48,6 +49,29 @@ void all_atk(qk_tap_dance_state_t *state, void *user_data) {
   tap_code(KC_E);
 };
 
+void alt_1_n_alt_1(qk_tap_dance_state_t *state, void *user_data) {
+  tap_state = cur_dance(state);
+  switch (tap_state) {
+    case SINGLE_TAP:
+      SEND_STRING("N1");
+    break;
+    case DOUBLE_TAP:
+      SEND_STRING("N"SS_LALT("1"));
+    break;
+  }
+};
+
+//bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+//  switch (keycode) {
+//    case TD_1_N_ALT_1:
+//      tap_code(KC_N);
+//      return true;
+//      //return false;
+//    break;
+//  }
+//  return true;
+//}
+
 qk_tap_dance_action_t tap_dance_actions[] = {
   [TD_ESC_ZERO] = ACTION_TAP_DANCE_FN(esc_to_zero),
   [TD_ATK_ALL] = ACTION_TAP_DANCE_FN(all_atk),
@@ -61,6 +85,16 @@ qk_tap_dance_action_t tap_dance_actions[] = {
   [TD_8_ALT_8] = ACTION_TAP_DANCE_DOUBLE(KC_8, LALT(KC_8)),
   [TD_9_ALT_9] = ACTION_TAP_DANCE_DOUBLE(KC_9, LALT(KC_9)),
   [TD_0_ALT_0] = ACTION_TAP_DANCE_DOUBLE(KC_0, LALT(KC_0)),
+
+  [TD_1_N_ALT_1] = ACTION_TAP_DANCE_FN(alt_1_n_alt_1),
+  [TD_2_N_ALT_2] = ACTION_TAP_DANCE_DOUBLE(KC_2, LALT(KC_2)),
+  [TD_3_N_ALT_3] = ACTION_TAP_DANCE_DOUBLE(KC_3, LALT(KC_3)),
+  [TD_4_N_ALT_4] = ACTION_TAP_DANCE_DOUBLE(KC_4, LALT(KC_4)),
+  [TD_5_N_ALT_5] = ACTION_TAP_DANCE_DOUBLE(KC_5, LALT(KC_5)),
+  [TD_6_N_ALT_6] = ACTION_TAP_DANCE_DOUBLE(KC_6, LALT(KC_6)),
+  [TD_7_N_ALT_7] = ACTION_TAP_DANCE_DOUBLE(KC_7, LALT(KC_7)),
+  [TD_8_N_ALT_8] = ACTION_TAP_DANCE_DOUBLE(KC_8, LALT(KC_8)),
+
   [TD_F1_S_F1] = ACTION_TAP_DANCE_DOUBLE(KC_F1, LSFT(KC_F1)),
   [TD_F2_S_F2] = ACTION_TAP_DANCE_DOUBLE(KC_F2, LSFT(KC_F2)),
   [TD_F3_S_F3] = ACTION_TAP_DANCE_DOUBLE(KC_F3, LSFT(KC_F3)),

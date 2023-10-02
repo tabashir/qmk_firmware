@@ -126,28 +126,29 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // ZXCV Row
         KC_LSFT         , TD(TD_ATK_ALL) , KC_Z           , KC_X           , KC_C           , KC_V           , KC_B               , KC_N    , KC_M  , KC_COMM , KC_DOT  , KC_SLSH , KC_RSFT ,
         //middle
-        KC_BTN3         ,
+        KC_J            ,
         //numpad
-        KC_M            , KC_J           , KC_L           , KC_F           ,
+        KC_M            , KC_X           , KC_L           , KC_F           ,
 // Space Row
-        KC_Q            , KC_BTN1        , KC_E           , KC_SPC         , KC_RALT        , KC_RGUI        , TO(_LAYER_CHOOSER) , KC_RCTL ,
+        KC_Q            , KC_BTN1        , KC_E           , KC_SPC         , KC_RALT        , KC_RGUI        , TO(_LAYER_CHOOSER) , KC_LCTL ,
         //middle
-        TD(TD_T_OR_X)   , KC_LSFT        , KC_SPACE       ,
+        KC_BTN1      , KC_LSFT        , KC_SPACE       ,
         //numpad
-        KC_BTN1         , KC_V
+        KC_T         , KC_V
+        //TD(TD_T_OR_X)
     ),
 
    [_WOW] = LAYOUT_fullsize_iso(
 // Function Row
         TD(TD_ESC_ZERO) , TD(TD_F1_S_F1), TD(TD_F2_S_F2), TD(TD_F3_S_F3), TD(TD_F4_S_F4), TD(TD_F5_S_F5), TD(TD_F6_S_F6), TD(TD_F7_S_F7), TD(TD_F8_S_F8), TD(TD_F9_S_F9), TD(TD_F10_S_F10), TD(TD_F11_S_F11), TD(TD_F12_S_F12),
         //numpad
-        TD(TD_5_ALT_5) , TD(TD_6_ALT_6) , TD(TD_7_ALT_7) ,
+        TD(TD_5_N_ALT_5) , TD(TD_6_N_ALT_6) , TD(TD_7_N_ALT_7) ,
 // Number Row
         TD(TD_PGUP_S_PGUP)          , TD(TD_1_ALT_1) , TD(TD_2_ALT_2) , TD(TD_3_ALT_3) , TD(TD_4_ALT_4) , TD(TD_5_ALT_5) , TD(TD_6_ALT_6)     , TD(TD_7_ALT_7) , TD(TD_8_ALT_8) , TD(TD_9_ALT_9) , TD(TD_0_ALT_0) , KC_MINS , KC_EQL  , KC_BSPC ,
         //middle
         TD(TD_INS_S_INS), TD(TD_HOME_S_HOME), TD(TD_PGUP_S_PGUP),
         //numpad
-        TD(TD_1_ALT_1)  , TD(TD_2_ALT_2)  , TD(TD_3_ALT_3) , TD(TD_4_ALT_4) ,
+        TD(TD_1_N_ALT_1)  , TD(TD_2_N_ALT_2)  , TD(TD_3_N_ALT_3) , TD(TD_4_N_ALT_4) ,
 // QWERTY Row
         KC_TAB          , KC_Q           , KC_W           , KC_E           , KC_R           , KC_T           , KC_Y               , KC_U           , KC_I           , KC_O           , KC_P           , KC_LBRC , KC_RBRC ,
         //middle
@@ -161,15 +162,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // ZXCV Row
         KC_LSFT         , KC_NUBS        , KC_Z           , KC_X           , KC_C           , KC_V           , KC_B               , KC_N           , KC_M           , KC_COMM        , KC_DOT         , KC_SLSH , KC_RSFT ,
         //middle
-        KC_UP           ,
+        LSFT(KC_PGDN)   ,
         //numpad
-        KC_Z            , KC_X           , KC_C           , KC_F           ,
+        KC_Z            , KC_X           , KC_C           , LSA_T(KC_N)    ,
 // Space Row
         KC_LCTL         , KC_LWIN        , KC_LALT        , KC_SPC         , KC_RALT        , KC_RGUI        , TO(_LAYER_CHOOSER) , KC_RCTL        ,
         //middle
         KC_LCTL         , KC_LSFT        , KC_SPACE       ,
         //numpad
-        KC_LALT           , KC_PDOT
+        KC_LALT         , LSA_T(KC_PDOT)
     )
 
 };
