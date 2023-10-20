@@ -6,7 +6,8 @@ enum keyboard_layer {
     _LAYER_CHOOSER,
     _GAMES,
     _IMPACT,
-    _WOW
+    _WOW,
+    _VALHEIM
 };
 
 enum {
@@ -54,5 +55,13 @@ enum {
     TD_5_N_ALT_5,
     TD_6_N_ALT_6,
     TD_7_N_ALT_7,
-    TD_8_N_ALT_8
+    TD_8_N_ALT_8,
+    TD_1_5,
+    TD_2_6,
+    TD_3_7,
+    TD_4_8,
+    TD_5_9,
+    TD_Z_A1,
+    TD_V_A2,
+    TD_B_A3
 };
