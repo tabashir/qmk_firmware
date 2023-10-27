@@ -2,11 +2,9 @@
 
 enum keyboard_layer {
     // Base layers
-    _QWERTY,
+    _KEYPAD,
     _LAYER_CHOOSER,
-    _GAMES,
-    _IMPACT,
-    _WOW,
+    _ORIGINAL,
     _VALHEIM
 };
 

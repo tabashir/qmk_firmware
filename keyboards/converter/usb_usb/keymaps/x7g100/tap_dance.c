@@ -39,7 +39,7 @@ void esc_to_zero(qk_tap_dance_state_t *state, void *user_data) {
       break;
     default:
       layer_clear();
-      layer_move(_QWERTY);
+      layer_move(_ORIGINAL);
       break;
   }
 };
